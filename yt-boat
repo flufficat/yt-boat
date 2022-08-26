@@ -1,0 +1,35 @@
+#!/bin/bash
+# Colour variables
+green="\e[1;32m"
+red="\e[1;31m"
+yellow="\e[0;93m"
+reset="\e[0m"
+
+# Options
+while test $# -gt 0; do
+  case "$1" in
+      --add|-a)
+          shift
+	  echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue
+          echo -e "${green}Video added to queue${reset}"
+          shift
+          ;;
+      --download|-d)
+          shift
+	  yt-dlp -a $XDG_DATA_HOME/yt-boat/newsboat.queue && : > $XDG_DATA_HOME/yt-boat/newsboat.queue
+          echo -e "${green}Videos downloaded${reset}"
+          shift
+          ;;
+      --clear|-c)
+          shift
+	  : > $XDG_DATA_HOME/yt-boat/newsboat.queue  > /dev/null 2>&1
+          echo -e "${green}Queue cleared${reset}"
+          shift
+          ;;
+      *)
+          echo -e "${yellow}\"${red}$1${yellow}\" is not an option${reset}"
+	  shift
+          ;;
+  esac
+done
+
