@@ -16,7 +16,7 @@ while test $# -gt 0; do
           ;;
       --download|-d)
           shift
-	  yt-dlp -a $XDG_DATA_HOME/yt-boat/newsboat.queue && : > $XDG_DATA_HOME/yt-boat/newsboat.queue
+	  yt-dlp -a $XDG_DATA_HOME/yt-boat/newsboat.queue > /dev/null 2>&1 && : > $XDG_DATA_HOME/yt-boat/newsboat.queue
           echo -e "${green}Videos downloaded${reset}"
           shift
           ;;
