@@ -12,11 +12,14 @@ A video downloader for the Newsboat feed reader
 
 ![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge) 
 ![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)
+
 Once these features are complete and bugs fixed then I will release version 1.1.0
 - [ ] Update option
 
 ![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)
+
 Once these features are complete and bugs fixed then I will release version 2.0.0
+
 ## Dependencies
 The only dependencies should be:
 - `yt-dlp` A youtube-dl fork with additional features and fixes.
