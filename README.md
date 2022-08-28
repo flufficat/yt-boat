@@ -1,7 +1,10 @@
 # yt-boat
 A video downloader for the Newsboat feed reader
 
-![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)   ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)  ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/flufficat/yt-boat?color=%23BA7BE5&label=Commits&style=for-the-badge) ![GitHub repo size](https://img.shields.io/github/repo-size/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)
+[![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/flufficat/yt-boat?color=%23BA7BE5&label=Commits&style=for-the-badge)](https://github.com/flufficat/yt-boat/commits/main)
+[![GitHub repo size](https://img.shields.io/github/repo-size/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat)
 ## Features
 - [x] Add vidoes to queue on command line and in newsboat
 - [x] Download queue on command line and in newsboat
@@ -10,13 +13,13 @@ A video downloader for the Newsboat feed reader
 - [ ] View help from Newsboat
 - [ ] See the queue feature on command line and in Newsboat
 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge) 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/2)
 
 Once these features are complete and bugs fixed then I will release version 1.1.0
 - [ ] Update option
 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
 Once these features are complete and bugs fixed then I will release version 2.0.0
 
