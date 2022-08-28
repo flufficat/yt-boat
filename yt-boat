@@ -1,35 +1,57 @@
 #!/bin/bash
+
 # Colour variables
 green="\e[1;32m"
 red="\e[1;31m"
 yellow="\e[0;93m"
 reset="\e[0m"
 
+# Error handling
+PROGNAME="$(basename $0)"
+error_exit()
+{
+  echo -e "${yellow}${PROGNAME}: line $LINENO: Error: ${1:-"Unknown Error: Please submit an issue or contact me as this is probably an error with the code itself"}${reset}" 1>&2
+  exit 1
+}
+
 # Options
 while test $# -gt 0; do
-  case "$1" in
-      --add|-a)
-          shift
-	  echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue
-          echo -e "${green}Video added to queue${reset}"
-          shift
-          ;;
-      --download|-d)
-          shift
-	  yt-dlp -a $XDG_DATA_HOME/yt-boat/newsboat.queue > /dev/null 2>&1 && : > $XDG_DATA_HOME/yt-boat/newsboat.queue
-          echo -e "${green}Videos downloaded${reset}"
-          shift
-          ;;
-      --clear|-c)
-          shift
-	  : > $XDG_DATA_HOME/yt-boat/newsboat.queue  > /dev/null 2>&1
-          echo -e "${green}Queue cleared${reset}"
-          shift
-          ;;
-      *)
-          echo -e "${yellow}\"${red}$1${yellow}\" is not an option${reset}"
-	  shift
-          ;;
-  esac
-done
+	case "$1" in
+		--add|-a)
+			shift
+			if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+				echo -e "${green}Video added to queue${reset}"
+			else
+				error_exit
+			fi
+			shift
+			;;
+		--download|-d)
+			shift
+			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
+				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
+				echo -e "${green}Videos downloaded${reset}"
+			else
+				error_exit "Probably invalid url"
+			fi
+			shift
+			;;
+		--clear|-c)
+			shift
+			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+			echo -e "${green}Queue cleared${reset}"
+			fi
+			shift
+			;;
+		-h|--help)
+			echo -e "Usage:\nyt-boat [option]\noptions:\n--add -a          Adds url to the queue\n--download -d     Downloads videos in the queue\n--clear -c        Clears the queue"
+			shift
+			;;
+		*)
+			error_exit "Not a valid option"
+			echo "--add|-a\n--download|-d\n--clear|-c"
+			shift
+			;;
 
+	esac
+done
