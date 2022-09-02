@@ -58,7 +58,10 @@ while test $# -gt 0; do
 			;;
 
 		*)
+<<<<<<< HEAD
 			error_exit "Not a valid option" && help_func
+=======
+>>>>>>> 0edff2f3729fbc14cebc5f6d4db274f907211681
 			shift
 			;;
 
