@@ -14,6 +14,11 @@ error_exit()
   exit 1
 }
 
+help_func()
+{
+echo -e "Usage:\nyt-boat [option]\noptions:\n--add -a          Adds url to the queue\n--download -d     Downloads videos in the queue\n--clear -c        Clears the queue\n--help -h          Shows this help message"
+}
+
 # Options
 while test $# -gt 0; do
 	case "$1" in
@@ -44,12 +49,12 @@ while test $# -gt 0; do
 			shift
 			;;
 		-h|--help)
-			echo -e "Usage:\nyt-boat [option]\noptions:\n--add -a          Adds url to the queue\n--download -d     Downloads videos in the queue\n--clear -c        Clears the queue"
+			help_func
 			shift
 			;;
 		*)
 			error_exit "Not a valid option"
-			echo "--add|-a\n--download|-d\n--clear|-c"
+			help_func
 			shift
 			;;
 
