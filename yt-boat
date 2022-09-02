@@ -6,12 +6,11 @@ red="\e[1;31m"
 yellow="\e[0;93m"
 reset="\e[0m"
 
-# Error handling
+# Functions
 PROGNAME="$(basename $0)"
 error_exit()
 {
   echo -e "${yellow}${PROGNAME}: line $LINENO: Error: ${1:-"Unknown Error: Please submit an issue or contact me as this is probably an error with the code itself"}${reset}" 1>&2
- # exit 1
 }
 
 help_func()
@@ -53,7 +52,7 @@ while test $# -gt 0; do
 			shift
 			;;
               	-nbh)
-			clear && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read
+			clear && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;
 
