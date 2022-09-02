@@ -1,5 +1,5 @@
 # yt-boat
-A video downloader for the Newsboat feed reader
+A tool to download videos from the Newsboat feed reader 
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
@@ -32,9 +32,7 @@ The only dependencies should be:
 - Download via zip on this page or run this command in your terminal:
 
   `git clone https://github.com/yt-boat/yt-boat.git`
-- Extract the folder by going to the download location right clicking  and opening with your archive manager or run:
 
-  `tar -xf yt-boat.tar.gz`
 - in a terminal run:
 
   ` cd yt-boat && ./install.sh`
