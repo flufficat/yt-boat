@@ -32,9 +32,7 @@ The only dependencies should be:
 - Download via zip on this page or run this command in your terminal:
 
   `git clone https://github.com/yt-boat/yt-boat.git`
-- Extract the folder by going to the download location right clicking  and opening with your archive manager or run:
 
-  `tar -xf yt-boat.tar.gz`
 - in a terminal run:
 
   ` cd yt-boat && ./install.sh`
