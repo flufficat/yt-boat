@@ -12,7 +12,7 @@ jobs:
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@1.39.0
       env:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
         WITH_V: true
         DEFAULT_BUMP: patch
         VERBOSE: true
