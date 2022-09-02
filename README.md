@@ -6,22 +6,23 @@ A tool to download videos from the Newsboat feed reader
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/flufficat/yt-boat?color=%23BA7BE5&label=Commits&style=for-the-badge)](https://github.com/flufficat/yt-boat/commits/main)
 [![GitHub repo size](https://img.shields.io/github/repo-size/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat)
 ## Features
-- [x] Add vidoes to queue on command line and in newsboat
-- [x] Download queue on command line and in newsboat
-- [x] Clear queue on command line and in newsboat
-- [x] View help on the command line
-- [ ] View help from Newsboat
-- [ ] See the queue feature on command line and in Newsboat
+- [x] Add vidoes to queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
+- [x] Download queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
+- [x] Clear queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
+- [x] View help on the command line [#9](https://github.com/flufficat/yt-boat/issues/9)
+- [ ] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
+- [ ] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/2)
 
-Once these features are complete and bugs fixed then I will release version 1.1.0
-- [ ] Update option
+Once the above features are complete and bugs fixed then I will release version 1.1.0
+- [ ] Update feature [#6](https://github.com/flufficat/yt-boat/issues/6)
+- [ ] Complete redo of installer [#12](https://github.com/flufficat/yt-boat/issues/12)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
-Once these features are complete and bugs fixed then I will release version 2.0.0
+Once the above features are complete and bugs fixed then I will release version 2.0.0
 
 ## Dependencies
 The only dependencies should be:
@@ -33,10 +34,10 @@ The only dependencies should be:
 
   `git clone https://github.com/yt-boat/yt-boat.git`
 
-- in a terminal run:
+- In a terminal run:
 
   ` cd yt-boat && ./install.sh`
-- once it is finished it should print:
+- Once it is finished it should print:
 
   ` Finished setting up`
 
@@ -56,7 +57,7 @@ The only dependencies should be:
 	 - `<macro> c` clear the urls in the queue
 
  ## Typical usage
- - on the command line
+ - On the command line
  	 - `yt-boat -a https://youtube.com/watch?v=GftvRRinYnq`
 	 - `yt-boat -d`
 	 - or if you dont want to download the video
