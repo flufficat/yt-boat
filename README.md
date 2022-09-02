@@ -1,10 +1,12 @@
-# yt-boat
-A tool to download videos from the Newsboat feed reader 
+[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/banner.png)](https://github.com/flufficat/yt-boat#readme) 
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/flufficat/yt-boat?color=%23BA7BE5&label=Commits&style=for-the-badge)](https://github.com/flufficat/yt-boat/commits/main)
+
 [![GitHub repo size](https://img.shields.io/github/repo-size/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat)
+[![GitHub tag](https://img.shields.io/github/v/tag/flufficat/yt-boat?color=BA7BE5&label=Latest&style=for-the-badge)](https://github.com/flufficat/yt-boat/tags)
+
 ## Features
 - [x] Add vidoes to queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] Download queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
