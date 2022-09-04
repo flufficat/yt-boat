@@ -12,7 +12,7 @@
 - [x] Download queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] Clear queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] View help on the command line [#9](https://github.com/flufficat/yt-boat/issues/9)
-- [ ] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
+- [x] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
 - [ ] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
