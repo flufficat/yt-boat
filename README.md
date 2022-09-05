@@ -1,4 +1,4 @@
-[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/banner.png)](https://github.com/flufficat/yt-boat#readme) 
+[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/banner_all_cols.png)](https://github.com/flufficat/yt-boat#readme) 
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
@@ -13,7 +13,7 @@
 - [x] Clear queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] View help on the command line [#9](https://github.com/flufficat/yt-boat/issues/9)
 - [x] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
-- [ ] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
+- [x] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/2)
@@ -45,22 +45,25 @@ The only dependencies should be:
 
 ## Usage options
 - On the command line
-	 `yt-boat [option]`
-	 - `--add or -a https://youtube.com/watch?v=GftvRRinYnq`
-	 to add a video to the queue
-	 - `--download or -d`
-	 to download the videos in the queue
-	 - `--clear or -c`
-	 to clear the queue
-	 - `--help or -h` to show the possible options
+	 Usage:
+	yt-boat [option]
+	options:
+	- `--add -a`          Adds url to the queue
+	- `--download -d`     Downloads videos in the queue
+	- `--clear -c`        Clears the queue
+	- `--queue -q`        Shows the urls in the queue
+	- `--help -h`         Shows this help message
  - In Newsboat
- 	 - `<macro> a` add current video url to queue
-	 - `<macro> d` download the urls in the queue
-	 - `<macro> c` clear the urls in the queue
+ 	 - `<macro> a` Adds current video url to queue
+	 - `<macro> d` Downloads the urls in the queue
+	 - `<macro> c` Clears the urls in the queue
+	 - `<macro> q` Shows the urls in the queue
+	 - `<macro> h` Shows this help message
 
  ## Typical usage
  - On the command line
- 	 - `yt-boat -a https://youtube.com/watch?v=GftvRRinYnq`
+ 	 - `yt-boat -a https://youtube.com/watch?v=xxxxxxxxxxx`
+	 - `yt-boat -q` if you want to see videos you have added
 	 - `yt-boat -d`
 	 - or if you dont want to download the video
 	 - `yt-boat -c`
@@ -69,18 +72,20 @@ The only dependencies should be:
 	 - Navigate to the "article" as it is called in Newsboat which is a video from a feed
 	 - Press `<macro> a` to add the current video to the queue
 		 - eg. `,a`
-	 - Do this for the videos you want to download
-	 - Once you have added the videos you want to the queue
-	press `<macro> d` and the videos will start downloading in the terminal window
+	 - Do this for the videos you want to add to the queue
+	 - Once you have added the videos you want to the queue, check the queue by pressing `<macro> q`
+	 - Then press `<macro> d` and the videos will start downloading in the terminal window
 	 - After they have downloaded the queue will automatically be cleared
-	 - If at any point you want to clear the queue you need to be in a feed, then press `<macro> c`
+	 - If you want to clear the queue at any point before downloading you need to:
+	 	- Go to a feed 
+	 	- Press `<macro> c`
 	 
 ## Found a bug?
 Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees=flufficat&labels=bug&template=bug_report.md&title=%5BBUG%5D).
 
 ## Contributing
 - Want to solve a simpler issue? Have a look at the [good first issue](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
-- Want to request a feauture? Submit an feature request [here](https://github.com/flufficat/yt-boat/issues/new?assignees=&labels=request&template=feature_request.md&title=%5BREQUEST%5D).
+- Want to request a feauture? Submit a feature request [here](https://github.com/flufficat/yt-boat/issues/new?assignees=&labels=request&template=feature_request.md&title=%5BREQUEST%5D).
 - Want to add a feature and you have the solution? Great! Create a pull request
 
 ## FAQ
@@ -92,4 +97,6 @@ Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees
 - A: For some reason in Newsboat clearing will only work when you are in a feed or article, I dont know why at this moment so I can't fix it, if you know why please submit an issue titled `Fixing clearing in Newsboat`
 
 ## Licence
->  <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/flufficat/yt-boat">yt-boat</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/flufficat/">flufficat</a> is marked with <a href="http://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0 Universal <img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"></a></p>
+>  <p xmlns:cc="https://creativecommons.org/ns#" xmlns:dct="https://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/flufficat/yt-boat">yt-boat</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/flufficat/">flufficat</a> is marked with <a href="https://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0 Universal <img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"></a></p>
+> This means that you can copy, modify, distribute and use the work
+> even for commercial purposes, all without asking permission.
