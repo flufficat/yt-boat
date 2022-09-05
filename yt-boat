@@ -71,10 +71,12 @@ while test $# -gt 0; do
 			shift
 			;;
         -nbh)
-			clear && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
+			#$TERMINAL -e $SHELL -c 'clear && green="\e[1;32m" && echo -e "help_func" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 1'
+			clear && green="\e[1;32m" && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;
 		-nbq)
+			#$TERMINAL -e $SHELL -c 'clear && echo -e "$(queue_func())" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0'
 			clear && echo -e "$(queue_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;
