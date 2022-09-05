@@ -10,12 +10,23 @@ reset="\e[0m"
 PROGNAME="$(basename $0)"
 error_exit()
 {
-  echo -e "${yellow}${PROGNAME}: line $LINENO: Error: ${1:-"Unknown Error: Please submit an issue or contact me as this is probably an error with the code itself"}${reset}" 1>&2
+echo -e "${yellow}${PROGNAME}: line $LINENO: Error: ${1:-"Unknown Error: Please submit an issue or contact me \
+as this is probably an error with the code itself"}${reset}" 1>&2
+}
+
+queue_func()
+{
+cat /home/leon/.local/share/yt-boat/newsboat.queue
 }
 
 help_func()
 {
-echo -e "Usage:\nyt-boat [option]\noptions:\n--add -a          Adds url to the queue\n--download -d     Downloads videos in the queue\n--clear -c        Clears the queue\n--help -h          Shows this help message"
+echo -e "Usage:\nyt-boat [option]\noptions:\n\
+--add -a          Adds url to the queue\n\
+--download -d     Downloads videos in the queue\n\
+--clear -c        Clears the queue\n\
+--queue -q        Shows the urls in the queue\n\
+--help -h         Shows this help message"
 }
 
 # Options
@@ -43,19 +54,30 @@ while test $# -gt 0; do
 		--clear|-c)
 			shift
 			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
-			echo -e "${green}Queue cleared${reset}"
+				echo -e "${green}Queue cleared${reset}"
 			fi
 			shift
+			;;
+		--queue|-q)
+			shift
+			if queue_func; then
+				exit 0
+			else
+				error_exit "Failed to find queue"
+			fi
 			;;
 		-h|--help)
 			help_func
 			shift
 			;;
-              	-nbh)
+        -nbh)
 			clear && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;
-
+		-nbq)
+			clear && echo -e "$(queue_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
+			shift
+			;;
 		*)
 			error_exit "Not a valid option" && help_func
 			shift
