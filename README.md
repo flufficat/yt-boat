@@ -12,7 +12,7 @@
 - [x] Download queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] Clear queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] View help on the command line [#9](https://github.com/flufficat/yt-boat/issues/9)
-- [ ] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
+- [x] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
 - [ ] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
@@ -74,6 +74,14 @@ The only dependencies should be:
 	press `<macro> d` and the videos will start downloading in the terminal window
 	 - After they have downloaded the queue will automatically be cleared
 	 - If at any point you want to clear the queue you need to be in a feed, then press `<macro> c`
+	 
+## Found a bug?
+Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees=flufficat&labels=bug&template=bug_report.md&title=%5BBUG%5D).
+
+## Contributing
+- Want to solve a simpler issue? Have a look at the [good first issue](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
+- Want to request a feauture? Submit an feature request [here](https://github.com/flufficat/yt-boat/issues/new?assignees=&labels=request&template=feature_request.md&title=%5BREQUEST%5D).
+- Want to add a feature and you have the solution? Great! Create a pull request
 
 ## FAQ
 - Q: X video wont download, why?
