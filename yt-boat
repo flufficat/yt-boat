@@ -32,7 +32,7 @@ echo -e "Usage:\nyt-boat [option]\noptions:\n\
 # Options
 while test $# -gt 0; do
 	case "$1" in
-		--add|-a)
+		-a|--add)
 			shift
 			if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
 				echo -e "${green}Video added to queue${reset}"
@@ -41,7 +41,7 @@ while test $# -gt 0; do
 			fi
 			shift
 			;;
-		--download|-d)
+		-d|--download)
 			shift
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
 				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
@@ -51,14 +51,14 @@ while test $# -gt 0; do
 			fi
 			shift
 			;;
-		--clear|-c)
+		-c|-clear)
 			shift
 			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
 				echo -e "${green}Queue cleared${reset}"
 			fi
 			shift
 			;;
-		--queue|-q)
+		-q|--queue)
 			shift
 			if queue_func; then
 				exit 0
@@ -66,17 +66,26 @@ while test $# -gt 0; do
 				error_exit "Failed to find queue"
 			fi
 			;;
-		-h|--help)
+		-h|--help) 
 			help_func
 			shift
 			;;
-        -nbh)
-			#$TERMINAL -e $SHELL -c 'clear && green="\e[1;32m" && echo -e "help_func" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 1'
+		-u|--update)
+			if wget https://raw.githubusercontent.com/flufficat/yt-boat/main/yt-boat; then
+				chmod +x yt-boat
+				sudo mv /usr/local/bin/yt-boat /usr/local/bin/yt-boat_old
+				sudo mv yt-boat /usr/local/bin
+				sudo mv yt-boat_old $XDG_DATA_HOME/Trash/files
+			else
+				error_exit "Download failure"
+			fi
+			;;
+        -hnb)
 			clear && green="\e[1;32m" && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;
-		-nbq)
-			#$TERMINAL -e $SHELL -c 'clear && echo -e "$(queue_func())" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0'
+			# look into cat and pipe to commands for getting info about feed
+		-qnb)
 			clear && echo -e "$(queue_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
 			shift
 			;;

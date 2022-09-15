@@ -19,8 +19,8 @@ echo -e '\n# yt-boat macros:\n\
 macro a set browser "yt-boat --add" ; open-in-browser ; set browser "exo-open --launch WebBrowser\n\
 macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"\n\
 macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser""\n\
-macro q set browser "yt-boat -nbq" ; open-in-browser ; set browser "exo-open --launch WebBrowser"\n\
-macro q set browser "yt-boat -nbq" ; open-in-browser ; set browser "exo-open --launch WebBrowser"\
+macro q set browser "$TERMINAL -e yt-boat -qnb &" ; open-in-browser ; set browser "exo-open --launch WebBrowser"\n\
+macro h set browser "$TERMINAL -e yt-boat -hnb &" ; open-in-browser ; set browser "exo-open --launch WebBrowser"\
 ' >> $XDG_CONFIG_HOME/newsboat/config
 
 # Finished
