@@ -71,14 +71,15 @@ while test $# -gt 0; do
 			shift
 			;;
 		-u|--update)
-			if wget https://raw.githubusercontent.com/flufficat/yt-boat/main/yt-boat; then
+			if wget -P $XDG_DATA_HOME/yt-boat https://raw.githubusercontent.com/flufficat/yt-boat/main/yt-boat; then
 				chmod +x yt-boat
 				sudo mv /usr/local/bin/yt-boat /usr/local/bin/yt-boat_old
-				sudo mv yt-boat /usr/local/bin
-				sudo mv yt-boat_old $XDG_DATA_HOME/Trash/files
+				sudo mv $XDG_DATA_HOME/yt-boat/yt-boat /usr/local/bin
+				sudo mv /usr/local/bin/yt-boat_old $XDG_DATA_HOME/Trash/files
 			else
 				error_exit "Download failure"
 			fi
+			shift
 			;;
         -hnb)
 			clear && green="\e[1;32m" && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
