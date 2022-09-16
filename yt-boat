@@ -26,6 +26,7 @@ echo -e "Usage:\nyt-boat [option]\noptions:\n\
 --download -d     Downloads videos in the queue\n\
 --clear -c        Clears the queue\n\
 --queue -q        Shows the urls in the queue\n\
+--update -u       Updates to the latest version of yt-boat\
 --help -h         Shows this help message"
 }
 
@@ -72,10 +73,14 @@ while test $# -gt 0; do
 			;;
 		-u|--update)
 			if wget -P $XDG_DATA_HOME/yt-boat https://raw.githubusercontent.com/flufficat/yt-boat/main/yt-boat; then
-				chmod +x yt-boat
-				sudo mv /usr/local/bin/yt-boat /usr/local/bin/yt-boat_old
-				sudo mv $XDG_DATA_HOME/yt-boat/yt-boat /usr/local/bin
-				sudo mv /usr/local/bin/yt-boat_old $XDG_DATA_HOME/Trash/files
+				if chmod +x yt-boat && \
+				sudo mv /usr/local/bin/yt-boat /usr/local/bin/yt-boat_old &&\
+				sudo mv $XDG_DATA_HOME/yt-boat/yt-boat /usr/local/bin &&\
+				sudo mv /usr/local/bin/yt-boat_old $XDG_DATA_HOME/Trash/files; then
+				echo -e "${green}Updated Sucessfully${reset}"
+				else
+				error_exit "Failed to update"
+				fi
 			else
 				error_exit "Download failure"
 			fi

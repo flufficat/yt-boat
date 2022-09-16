@@ -19,8 +19,7 @@
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/2)
 
 Once the above features are complete and bugs fixed then I will release version 1.1.0
-- [ ] Update feature [#6](https://github.com/flufficat/yt-boat/issues/6)
-- [ ] Complete redo of installer [#12](https://github.com/flufficat/yt-boat/issues/12)
+- [x] Update feature [#6](https://github.com/flufficat/yt-boat/issues/6)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
@@ -52,12 +51,14 @@ The only dependencies should be:
 	- `--download -d`     Downloads videos in the queue
 	- `--clear -c`        Clears the queue
 	- `--queue -q`        Shows the urls in the queue
+	- `--update -u`        Updates to the latest version of yt-boat
 	- `--help -h`         Shows this help message
  - In Newsboat
  	 - `<macro> a` Adds current video url to queue
 	 - `<macro> d` Downloads the urls in the queue
 	 - `<macro> c` Clears the urls in the queue
 	 - `<macro> q` Shows the urls in the queue
+	 - `<macro> u` Updates to the latest version of yt-boat
 	 - `<macro> h` Shows this help message
 
  ## Typical usage
@@ -95,6 +96,8 @@ Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees
 - A: Make sure you have either selected a video in a feed by using arrow keys or are in a "article" (by pressing on enter from a feed)
 - Q: The queue wont clear I am getting error `Cannot open query feeds in the browser!` in Newsboat?
 - A: For some reason in Newsboat clearing will only work when you are in a feed or article, I dont know why at this moment so I can't fix it, if you know why please submit an issue titled `Fixing clearing in Newsboat`
+- Q: After I update, I can run update again and it does another update, why?
+- A: The update simply pulls the latest version of the yt-boat file from the repo and replaces the old one with it so it will continue to do tht if you run update again.
 
 ## Licence
 >  <p xmlns:cc="https://creativecommons.org/ns#" xmlns:dct="https://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/flufficat/yt-boat">yt-boat</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/flufficat/">flufficat</a> is marked with <a href="https://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0 Universal <img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"></a></p>
