@@ -7,21 +7,23 @@ yellow="\e[0;93m"
 reset="\e[0m"
 
 # Functions
-PROGNAME="$(basename $0)"
-error_exit()
-{
-echo -e "${yellow}${PROGNAME}: line $LINENO: Error: ${1:-"Unknown Error: Please submit an issue or contact me \
-as this is probably an error with the code itself"}${reset}" 1>&2
+ERR_ () {
+	echo -e "${yellow}yt-boat: line $LINENO: Error: ${1:-"Unknown: Please submit an issue or contact me \
+	as this is probably an error with the code itself"}${reset}" 1>&2
+	exit 1
 }
 
-queue_func()
-{
-cat /home/leon/.local/share/yt-boat/newsboat.queue
+OK_ () {
+	echo -e "${green}${1}${reset}" 1>&2
+	exit 0
 }
 
-help_func()
-{
-echo -e "Usage:\nyt-boat [option]\noptions:\n\
+QUEUE_ () {
+	cat /home/leon/.local/share/yt-boat/newsboat.queue
+}
+
+HELP_ () {
+	echo -e "Usage:\nyt-boat [option]\noptions:\n\
 -a --add [url]     Adds url to the queue\n\
 -d --download      Downloads videos in the queue\n\
 -c --clear         Clears the queue\n\
@@ -36,47 +38,47 @@ while test $# -gt 0; do
 		-a|--add)
 			shift
 			if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
-				echo -e "${green}Video added to queue${reset}"
+				OK_ "Video added to queue"
 			else
-				error_exit
+				ERR_ 
 			fi
-			shift
 			;;
+
 		-d|--download)
-			shift
+			clear
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
 				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
-				echo -e "${green}Videos downloaded${reset}"
+				OK_ "Videos downloaded"
 			else
-				error_exit "Probably invalid url"
+				ERR_ "Probably invalid url"
 			fi
-			shift
 			;;
-		-c|-clear)
-			shift
+
+		-c|--clear)
 			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
-				echo -e "${green}Queue cleared${reset}"
+				OK_ "Queue cleared"
 			else
-				error_exit "Failed to clear queue"
+				ERR_
 			fi
-			shift
 			;;
+
 		-q|--queue)
-			shift
-			if queue_func; then
-				exit 0
+			if QUEUE_; then
+				OK_
 			else
-				error_exit "Failed to find queue"
+				ERR_ "Queue file may not exist, see FAQ's"
 			fi
-			shift
 			;;
+
 		-h|--help)
-			shift
-			help_func
-			shift
+			if HELP_; then
+				OK_
+			else
+				ERR_
+			fi
 			;;
+
 		-u|--update)
-			shift
 			if wget -o /tmp/log -P $XDG_DATA_HOME/yt-boat https://github.com/flufficat/yt-boat/releases/latest/download/yt-boat.tar.gz; then
 				tar -C $XDG_DATA_HOME/yt-boat -xf $XDG_DATA_HOME/yt-boat/yt-boat.tar.gz && \
 				chmod +x $XDG_DATA_HOME/yt-boat/yt-boat/yt-boat && \
@@ -85,31 +87,42 @@ while test $# -gt 0; do
 				sudo rm -r $XDG_DATA_HOME/yt-boat/yt-boat && \
 				sudo mv  $XDG_DATA_HOME/yt-boat/yt-boat.tar.gz $XDG_DATA_HOME/Trash/files && \
 				if sudo mv /usr/local/bin/yt-boat_old $XDG_DATA_HOME/Trash/files; then
-				echo -e "${green}Updated Sucessfully${reset}"
+					OK_ "Updated Sucessfully"
 				else
-				error_exit "Failed to update"
+					ERR_
 				fi
 			else
-				error_exit "Download failure"
+				ERR_ "Download failure"
 			fi
-			shift
-			;;
-        -hnb)
-			shift
-			clear && green="\e[1;32m" && echo -e "$(help_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
-			shift
-			;;
-			# look into cat and pipe to commands for getting info about feed
-		-qnb)
-			shift
-			clear && echo -e "$(queue_func)" && echo -e "${green}Press enter to go back to newsboat${reset}" && read && exit 0
-			shift
-			;;
-		*)
-			shift
-			error_exit "Not a valid option" && help_func
-			shift
 			;;
 
+        -hnb)
+			clear
+			if echo -e "$(HELP_)"; then
+				echo -e "${green}Press enter to go back to newsboat${reset}"
+				read
+				OK_
+			else
+				ERR_
+			fi
+			;;
+
+		-qnb)
+			clear
+			if echo -e "$(QUEUE_)"; then
+				echo -e "${green}Press enter to go back to newsboat${reset}"
+				read
+				OK_
+			else
+				ERR_
+			fi
+			;;
+
+		*)
+			shift
+			echo -e "${yellow}Not a valid option${reset}"
+			HELP_
+			ERR_
+			;;
 	esac
 done
