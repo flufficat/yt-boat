@@ -1,4 +1,4 @@
-[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/banner_all_cols.png)](https://github.com/flufficat/yt-boat#readme) 
+[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/v2_hero_version.png)](https://github.com/flufficat/yt-boat#readme) 
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
@@ -20,6 +20,8 @@
 
 Once the above features are complete and bugs fixed then I will release version 1.1.0
 - [x] Update feature [#6](https://github.com/flufficat/yt-boat/issues/6)
+- [x] Create success function [#17](https://github.com/flufficat/yt-boat/issues/17)
+- [x] Fix clear in newsboat [#18](https://github.com/flufficat/yt-boat/issues/18)
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
