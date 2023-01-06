@@ -5,13 +5,12 @@ r="\e[0m"
 g="\e[0;32m"
 
 # Making queue
-echo -e "${y}Making queue${r}"
-mkdir $XDG_DATA_HOME/yt-boat
-touch $XDG_DATA_HOME/yt-boat/newsboat.queue
+echo -e "${y}Removing queue${r}"
+rm -rf yt-boat
 
 # Copying yt-boat to path
 echo -e "${y}Copying yt-boat to path (requires root)${r}"
-sudo cp yt-boat /usr/local/bin
+sudo rm -f /usr/local/bin/yt-boat
 
 # Adding macro commands to newsboat config
 echo -e "${y}Adding macro commands to newsboat config${r}"
