@@ -37,7 +37,7 @@ while test $# -gt 0; do
 	case "$1" in
 		-a|--add)
 			shift
-			if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+				if echo $1 | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
 				OK_ "Video added to queue"
 			else
 				ERR_ 
@@ -45,12 +45,11 @@ while test $# -gt 0; do
 			;;
 
 		-d|--download)
-			clear
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
 				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
 				OK_ "Videos downloaded"
 			else
-				ERR_ "Probably invalid url"
+				ERR_ "Probably unsupported url"
 			fi
 			;;
 
