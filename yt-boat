@@ -44,7 +44,7 @@ while test $# -gt 0; do
 			fi
 			;;
 
-		-ao|--add-original)
+		-aa|--add-alternative)
 			shift
 				if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
 				OK_ "Video added to queue"
