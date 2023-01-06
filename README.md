@@ -14,14 +14,10 @@
 - [x] View help on the command line [#9](https://github.com/flufficat/yt-boat/issues/9)
 - [x] View help from Newsboat [#10](https://github.com/flufficat/yt-boat/issues/10)
 - [x] See the queue feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
-
-[![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/1?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/1)
-[![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/2?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/2)
-
-Once the above features are complete and bugs fixed then I will release version 1.1.0
 - [x] Update feature [#6](https://github.com/flufficat/yt-boat/issues/6)
 - [x] Create success function [#17](https://github.com/flufficat/yt-boat/issues/17)
 - [x] Fix clear in newsboat [#18](https://github.com/flufficat/yt-boat/issues/18)
+- [x] A KISS style project
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
