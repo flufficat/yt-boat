@@ -18,6 +18,7 @@
 - [x] Create success function [#17](https://github.com/flufficat/yt-boat/issues/17)
 - [x] Fix clear in newsboat [#18](https://github.com/flufficat/yt-boat/issues/18)
 - [x] A KISS style project
+- [x] Download from youtube.com by default or by a frontend if it is the provided url
 
 [![GitHub milestone](https://img.shields.io/github/milestones/progress/flufficat/yt-boat/3?style=for-the-badge)](https://github.com/flufficat/yt-boat/milestone/3)
 
@@ -45,14 +46,15 @@ The only dependencies should be:
 	 Usage:
 	yt-boat [option]
 	options:
-	- `--add -a`          Adds url to the queue
+	- `--add -a`          Adds video ID to the queue
+	- `--add -aa`         Adds full, alternative url to the queue (eg if you want to download from a different frontend)
 	- `--download -d`     Downloads videos in the queue
 	- `--clear -c`        Clears the queue
 	- `--queue -q`        Shows the urls in the queue
 	- `--update -u`        Updates to the latest version of yt-boat
 	- `--help -h`         Shows this help message
  - In Newsboat
- 	 - `<macro> a` Adds current video url to queue
+ 	 - `<macro> l` Adds current video's ID to queue
 	 - `<macro> d` Downloads the urls in the queue
 	 - `<macro> c` Clears the urls in the queue
 	 - `<macro> q` Shows the urls in the queue
