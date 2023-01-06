@@ -44,6 +44,16 @@ while test $# -gt 0; do
 			fi
 			;;
 
+		-ao|--add-original)
+			shift
+				if echo $1 >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+				OK_ "Video added to queue"
+			else
+				ERR_ 
+			fi
+			;;
+
+
 		-d|--download)
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
 				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
