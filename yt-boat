@@ -24,12 +24,13 @@ QUEUE_ () {
 
 HELP_ () {
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
--a --add [url]     Adds url to the queue\n\
--d --download      Downloads videos in the queue\n\
--c --clear         Clears the queue\n\
--q --queue         Shows the urls in the queue\n\
--u --update        Updates to the latest version of yt-boat\n\
--h --help          Shows this help message"
+-a --add [url]                  Adds url to the queue\n\
+-aa --add-alternative [url]     Adds url to the queue\n\
+-d --download                   Downloads videos in the queue\n\
+-c --clear                      Clears the queue\n\
+-q --queue                      Shows the urls in the queue\n\
+-u --update                     Updates to the latest version of yt-boat\n\
+-h --help                       Shows this help message"
 }
 
 # Options
@@ -38,10 +39,10 @@ while test $# -gt 0; do
 		-a|--add)
 			shift
 				if echo $1 | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
-				OK_ "Video added to queue"
-			else
-				ERR_ 
-			fi
+					OK_ "Videos added to queue"
+				else
+					ERR_
+				fi
 			;;
 
 		-aa|--add-alternative)
@@ -72,6 +73,7 @@ while test $# -gt 0; do
 			;;
 
 		-q|--queue)
+		shift
 			if QUEUE_; then
 				OK_
 			else
@@ -134,4 +136,5 @@ while test $# -gt 0; do
 			ERR_
 			;;
 	esac
+	shift
 done
