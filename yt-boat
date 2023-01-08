@@ -38,12 +38,21 @@ while test $# -gt 0; do
 	case "$1" in
 		-a|--add)
 			shift
-				if echo $1 | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
-					OK_ "Videos added to queue"
-				else
-					ERR_
-				fi
+				for i in $@
+				do
+					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue
+				done
+				OK_ "Videos added to queue" || ERR_
 			;;
+		
+		#-a|--add)
+		#	shift
+		#		if echo $1 | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+		#			OK_ "Videos added to queue"
+		#		else
+		#			ERR_
+		#		fi
+		#	;;
 
 		-aa|--add-alternative)
 			shift
