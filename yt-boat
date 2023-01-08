@@ -38,7 +38,7 @@ while test $# -gt 0; do
 	case "$1" in
 		-a|--add)
 			shift
-				for i in $@
+				for i in "$@"
 				do
 					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue
 				done
