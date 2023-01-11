@@ -24,13 +24,22 @@ QUEUE_ () {
 
 HELP_ () {
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
--a --add [url]                  Adds url to the queue\n\
+-a --add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
 -aa --add-alternative [url]     Adds url to the queue\n\
 -d --download                   Downloads videos in the queue\n\
 -c --clear                      Clears the queue\n\
 -q --queue                      Shows the urls in the queue\n\
 -u --update                     Updates to the latest version of yt-boat\n\
--h --help                       Shows this help message"
+-h --help                       Shows this help message\n\
+\n\
+In newsboat\n\
+<macro> a Adds current video's ID to queue\n\
+<macro> l Adds the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+<macro> d Downloads the urls in the queue\n\
+<macro> c Clears the urls in the queue\n\
+<macro> q Shows the urls in the queue\n\
+<macro> u Updates to the latest version of yt-boat\n\
+<macro> h Shows this help message"
 }
 
 # Options
