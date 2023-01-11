@@ -29,11 +29,28 @@ The only dependencies should be:
 
 - In a terminal run:
 
-  ` cd yt-boat && ./install.sh`
-- Once it is finished it should print:
+  `cd yt-boat && ./install.sh`
+  
+  - Once it is finished it should print:
 
   ` Finished setting up`
-
+  
+  To install it to newsboat as well also run:
+  
+  `./newboat_install.sh`
+  
+  or add the following to your newsboat config
+  
+```
+macro a set browser "yt-boat --add $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser
+macro l set browser "yt-boat --add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser
+macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+macro u set browser "yt-boat --update" ; open-in-browser ; set browser"exo-open --launch WebBrowser"
+macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+```
+  
 ## Usage options
 - On the command line
 	 Usage:
