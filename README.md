@@ -21,7 +21,7 @@ The only dependencies should be:
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - A youtube-dl fork with additional features and fixes.
 - [Newsboat](https://github.com/newsboat/newsboat) (optional) - Newsboat is an RSS/Atom feed reader for the text console. It’s an actively maintained fork of Newsbeuter.
 
-## Installation
+## Installation/Update
 - Download via zip on this page or run this command in your terminal:
 
   `git clone https://github.com/yt-boat/yt-boat.git`
@@ -37,6 +37,10 @@ The only dependencies should be:
   To install it to newsboat as well also run:
   
   `./newsboat_install.sh`
+
+  then run (dont need if updating)
+  
+  `echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config` 
   
   or add the following to your newsboat config
   
@@ -48,6 +52,12 @@ macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open 
 macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 ```
+
+
+  then run (dont need if updating)
+    
+   `echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config` 
+
   
 ## Usage options
 - On the command line
