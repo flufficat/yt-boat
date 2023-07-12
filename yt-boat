@@ -28,7 +28,7 @@ QUEUE_ () {
 HELP_ () {
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
 a add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
-aa-add-alternative [url]     Adds url to the queue\n\
+aa add-alternative [url]     Adds url to the queue\n\
 d download                   Downloads videos in the queue\n\
 c clear                      Clears the queue\n\
 q queue                      Shows the urls in the queue\n\
