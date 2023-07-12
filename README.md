@@ -1,4 +1,4 @@
-[![yt-boat](https://raw.githubusercontent.com/flufficat/yt-boat/main/v2_hero_version.png)](https://github.com/flufficat/yt-boat#readme) 
+[![yt-boat](https://github.com/flufficat/yt-boat/blob/main/banner_all_cols.png)](https://github.com/flufficat/yt-boat#readme) 
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/flufficat/yt-boat?color=%23BA7BE5&style=for-the-badge)](https://github.com/flufficat/yt-boat/issues?q=is%3Aissue+is%3Aclosed)
@@ -11,7 +11,6 @@
 - [x] Add and download videos from the queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] Clear the queue on the command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] A "See the queue" feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
-- [x] Update command [#6](https://github.com/flufficat/yt-boat/issues/6)
 - [x] Simple and helpful terminal output [#17](https://github.com/flufficat/yt-boat/issues/17)
 - [x] Add multiple urls at once
 - [x] A KISS style project
@@ -56,13 +55,13 @@ macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --l
 	 Usage:
 	yt-boat [option]
 	options:
-	- `--add -a`               Adds video ID to the queue
-	- `--add-alternative -aa`  Adds the full, provided url to the queue (eg if you want to download from a different frontend)
-	- `--download -d`          Downloads the videos in the queue
-	- `--clear -c`             Clears the queue
-	- `--queue -q`             Shows the urls in the queue
-	- `--update -u`            Updates to the latest version of yt-boat
-	- `--help -h`              Shows this help message
+	- `add a`               Adds video ID to the queue
+	- `add-alternative aa`  Adds the full, provided url to the queue (eg if you want to download from a different frontend)
+	- `download d`          Downloads the videos in the queue
+	- `clear c`             Clears the queue
+	- `queue q`             Shows the urls in the queue
+	- `update u`            Updates to the latest version of yt-boat
+	- `help h`              Shows this help message
 
 - In Newsboat
   	 - `<macro> a`             Adds current video's ID to queue
@@ -75,11 +74,11 @@ macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --l
 
  ## Typical usage
  - On the command line
- 	 - `yt-boat -a https://youtube.com/watch?v=xxxxxxxxxxx`
-	 - `yt-boat -q` if you want to see videos you have added
-	 - `yt-boat -d`
-	 - or if you dont want to download the video
-	 - `yt-boat -c`
+ 	 - `yt-boat a https://youtube.com/watch?v=xxxxxxxxxxx`
+	 - `yt-boat q` if you want to see videos you have added
+	 - `yt-boat d`
+	 - or if you dont want to download the video, clear the queue
+	 - `yt-boat c`
 - In Newsboat
 	 - The macro key is set to `,` as default
 	 - Navigate to the "article" as it is called in Newsboat which is a video from a feed
