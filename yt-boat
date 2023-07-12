@@ -101,24 +101,6 @@ while test "$#" -gt 0; do
 			fi
 			;;
 
-		u|update|--update)
-			if wget -o /tmp/log -P $XDG_DATA_HOME/yt-boat https://github.com/flufficat/yt-boat/releases/latest/download/yt-boat.tar.gz; then
-				tar -C $XDG_DATA_HOME/yt-boat -xf $XDG_DATA_HOME/yt-boat/yt-boat.tar.gz && \
-				chmod +x $XDG_DATA_HOME/yt-boat/yt-boat/yt-boat && \
-				sudo mv /usr/local/bin/yt-boat /usr/local/bin/yt-boat_old && \
-				sudo mv $XDG_DATA_HOME/yt-boat/yt-boat/yt-boat /usr/local/bin && \
-				sudo rm -r $XDG_DATA_HOME/yt-boat/yt-boat && \
-				sudo mv  $XDG_DATA_HOME/yt-boat/yt-boat.tar.gz $XDG_DATA_HOME/Trash/files && \
-				if sudo mv /usr/local/bin/yt-boat_old $XDG_DATA_HOME/Trash/files; then
-					OK_ "Updated Sucessfully"
-				else
-					ERR_
-				fi
-			else
-				ERR_ "Download failure"
-			fi
-			;;
-
         	-hnb)
 			clear
 			if echo -e "$(HELP_)"; then
