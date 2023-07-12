@@ -1,10 +1,12 @@
 #!/bin/bash
-
 # Colour variables
 green="\e[1;32m"
 red="\e[1;31m"
 yellow="\e[0;93m"
 reset="\e[0m"
+
+# File variables
+queue_file="$XDG_DATA_HOME/yt-boat/newsboat.queue"
 
 # Functions
 ERR_ () {
@@ -19,7 +21,8 @@ OK_ () {
 }
 
 QUEUE_ () {
-	cat /home/leon/.local/share/yt-boat/newsboat.queue
+	echo -e "There are ${green}$(wc -l $XDG_DATA_HOME/yt-boat/newsboat.queue | cut -c 1)${reset} vidoes in the queue:"
+	cat $XDG_DATA_HOME/yt-boat/newsboat.queue
 }
 
 HELP_ () {
@@ -43,9 +46,9 @@ In newsboat\n\
 }
 
 # Options
-while test $# -gt 0; do
+while test "$#" -gt 0; do
 	case "$1" in
-		-a|--add)
+		a|add)
 			shift
 				for i in "$@"
 				do
@@ -54,7 +57,7 @@ while test $# -gt 0; do
 				OK_ "Videos added to queue" || ERR_
 			;;
 		
-		-aa|--add-alternative)
+		aa|add-alternative)
 			shift
 				for i in $@
 				do
@@ -64,7 +67,7 @@ while test $# -gt 0; do
 			;;
 
 
-		-d|--download)
+		d|download)
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
 				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
 				OK_ "Videos downloaded"
@@ -73,7 +76,7 @@ while test $# -gt 0; do
 			fi
 			;;
 
-		-c|--clear)
+		c|clear)
 			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
 				OK_ "Queue cleared"
 			else
@@ -81,7 +84,7 @@ while test $# -gt 0; do
 			fi
 			;;
 
-		-q|--queue)
+		q|queue)
 		shift
 			if QUEUE_; then
 				OK_
@@ -90,7 +93,7 @@ while test $# -gt 0; do
 			fi
 			;;
 
-		-h|--help)
+		h|help)
 			if HELP_; then
 				OK_
 			else
@@ -98,7 +101,7 @@ while test $# -gt 0; do
 			fi
 			;;
 
-		-u|--update)
+		u|update)
 			if wget -o /tmp/log -P $XDG_DATA_HOME/yt-boat https://github.com/flufficat/yt-boat/releases/latest/download/yt-boat.tar.gz; then
 				tar -C $XDG_DATA_HOME/yt-boat -xf $XDG_DATA_HOME/yt-boat/yt-boat.tar.gz && \
 				chmod +x $XDG_DATA_HOME/yt-boat/yt-boat/yt-boat && \
