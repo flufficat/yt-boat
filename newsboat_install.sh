@@ -5,7 +5,7 @@ r="\e[0m"
 g="\e[0;32m"
 
 # Add macro commands to newsboat config
-touch $XDG_CONFIG_HOME/newsboat/yt-boat
+test ! -e $XDG_CONFIG_HOME/newsboat/yt-boat && touch $XDG_CONFIG_HOME/newsboat/yt-boat
 echo -e "${y}Adding macro commands to newsboat config${r}"
 echo -e '# yt-boat macros:\n
 macro a set browser "yt-boat add $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
