@@ -45,7 +45,6 @@ macro a set browser "yt-boat --add $1" ; open-in-browser ; set browser "exo-open
 macro l set browser "yt-boat --add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro u set browser "yt-boat --update" ; open-in-browser ; set browser"exo-open --launch WebBrowser"
 macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 ```
@@ -60,7 +59,6 @@ macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --l
 	- `download d`          Downloads the videos in the queue
 	- `clear c`             Clears the queue
 	- `queue q`             Shows the urls in the queue
-	- `update u`            Updates to the latest version of yt-boat
 	- `help h`              Shows this help message
 
 - In Newsboat
@@ -69,7 +67,6 @@ macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --l
 	 - `<macro> d`             Downloads the urls in the queue
 	 - `<macro> c`             Clears the urls in the queue
 	 - `<macro> q`             Shows the urls in the queue
-	 - `<macro> u`             Updates to the latest version of yt-boat
 	 - `<macro> h`             Shows this help message
 
  ## Typical usage
@@ -105,8 +102,6 @@ Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees
 - A: yt-boat will work for any video site that yt-dlp can download, it does not download videos itself, if there is an issue with downloading videos submit a bug to https://github.com/yt-dlp/yt-dlp/blob/master/CONTRIBUTING.md#opening-an-issue. To see yt-dlp's FAQ go to https://github.com/yt-dlp/yt-dlp/wiki/FAQ
 - Q: Adding a video to queue wont work?
 - A: Make sure you have either selected a video in a feed by using arrow keys or are in a "article" (by pressing on enter from a feed)
-- Q: After I update, I can run update again and it does another update, why?
-- A: The update simply pulls the latest version of the yt-boat file from the releases and replaces the old one with it so it will continue to do that if you run update again.
 - Q: I am getting Error: Queue file may not exist, see FAQ's
 - A: For some reason the queue file may have been deleted, this program can't do that so it is probably for another reason. Just add a new queue file at $XDG_DATA_HOME/yt-boat/newsboat.queue by entering these commands:
 	- `mkdir $XDG_DATA_HOME/yt-boat`
