@@ -10,8 +10,8 @@ mkdir $XDG_DATA_HOME/yt-boat
 touch $XDG_DATA_HOME/yt-boat/newsboat.queue
 
 # Copying yt-boat to path
-echo -e "${y}Copying yt-boat to path (requires root)${r}"
-sudo cp yt-boat /usr/local/bin
+echo -e "${y}Copying yt-boat to path${r}"
+cp yt-boat $HOME/.local/bin
 
 # Finished
 echo -e "${g}Finished setting up${r}"
