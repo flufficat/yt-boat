@@ -12,7 +12,6 @@ macro a set browser "yt-boat add $1" ; open-in-browser ; set browser "exo-open -
 macro l set browser "yt-boat add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro d set browser "yt-boat download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro c set browser "yt-boat clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro u set browser "yt-boat update" ; open-in-browser ; set browser"exo-open --launch WebBrowser"
 macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 ' >> $XDG_CONFIG_HOME/newsboat/yt-boat
