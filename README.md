@@ -37,7 +37,7 @@ The only dependencies should be:
   
   To install it to newsboat as well also run:
   
-  `./newboat_install.sh`
+  `./newsboat_install.sh`
   
   or add the following to your newsboat config
   
