@@ -10,7 +10,7 @@ queue_file="$XDG_DATA_HOME/yt-boat/newsboat.queue"
 
 # Functions
 ERR_ () {
-	echo -e "${yellow}yt-boat: line $LINENO: Error: ${1:-"Unknown: Please submit an issue or contact me \
+	echo -e "${yellow}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
 	as this is probably an error with the code itself"}${reset}" 1>&2
 	exit 1
 }
@@ -22,7 +22,7 @@ OK_ () {
 
 QUEUE_ () {
 	echo -e "There are ${green}$(wc -l $XDG_DATA_HOME/yt-boat/newsboat.queue | cut -c 1)${reset} vidoes in the queue:"
-	cat $XDG_DATA_HOME/yt-boat/newsboat.queue
+	cat $XDG_DATA_HOME/yt-boat/yt-boat.queue
 }
 
 HELP_ () {
@@ -50,7 +50,7 @@ while test "$#" -gt 0; do
 			shift
 				for i in "$@"
 				do
-					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/newsboat.queue
+					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/yt-boat.queue
 				done
 				OK_ "Videos added to queue" || ERR_
 			;;
@@ -59,7 +59,7 @@ while test "$#" -gt 0; do
 			shift
 				for i in $@
 				do
-					echo $i >> $XDG_DATA_HOME/yt-boat/newsboat.queue
+					echo $i >> $XDG_DATA_HOME/yt-boat/yt-boat.queue
 				done
 				OK_ "Video added to queue"
 			;;
@@ -67,15 +67,15 @@ while test "$#" -gt 0; do
 
 		d|download|--download)
 			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/newsboat.queue"; then
-				: > $XDG_DATA_HOME/yt-boat/newsboat.queue
+				: > $XDG_DATA_HOME/yt-boat/yt-boat.queue
 				OK_ "Videos downloaded"
 			else
-				ERR_ "Probably unsupported url"
+				ERR_ "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
 			fi
 			;;
 
 		c|clear|--clear)
-			if : > $XDG_DATA_HOME/yt-boat/newsboat.queue; then
+			if : > $XDG_DATA_HOME/yt-boat/yt-boat.queue; then
 				OK_ "Queue cleared"
 			else
 				ERR_
