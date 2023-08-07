@@ -6,7 +6,7 @@ yellow="\e[0;93m"
 reset="\e[0m"
 
 # File variables
-queue_file="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
+QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
 
 # Functions
 ERR_ () {
@@ -21,8 +21,8 @@ OK_ () {
 }
 
 QUEUE_ () {
-	echo -e "There are ${green}$(wc -l $XDG_DATA_HOME/yt-boat/yt-boat.queue | cut -c 1)${reset} vidoes in the queue:"
-	cat $XDG_DATA_HOME/yt-boat/yt-boat.queue
+	echo -e "There are ${green}$(wc -l $QF | cut -c 1)${reset} vidoes in the queue:"
+	cat $QF
 }
 
 HELP_ () {
@@ -50,7 +50,7 @@ while test "$#" -gt 0; do
 			shift
 				for i in "$@"
 				do
-					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $XDG_DATA_HOME/yt-boat/yt-boat.queue
+					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $QF
 				done
 				OK_ "Videos added to queue" || ERR_
 			;;
@@ -59,15 +59,15 @@ while test "$#" -gt 0; do
 			shift
 				for i in $@
 				do
-					echo $i >> $XDG_DATA_HOME/yt-boat/yt-boat.queue
+					echo $i >> $QF
 				done
 				OK_ "Video added to queue"
 			;;
 
 
 		d|download|--download)
-			if yt-dlp -a "$XDG_DATA_HOME/yt-boat/yt-boat.queue"; then
-				: > $XDG_DATA_HOME/yt-boat/yt-boat.queue
+			if yt-dlp -a "$QF"; then
+				: > $QF
 				OK_ "Videos downloaded"
 			else
 				ERR_ "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
@@ -75,7 +75,7 @@ while test "$#" -gt 0; do
 			;;
 
 		c|clear|--clear)
-			if : > $XDG_DATA_HOME/yt-boat/yt-boat.queue; then
+			if : > $QF; then
 				OK_ "Queue cleared"
 			else
 				ERR_
