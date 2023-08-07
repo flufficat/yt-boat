@@ -1,0 +1,77 @@
+.TH yt-boat 1 "07 August 2023"
+.SH NAME
+yt-boat \- Queue videos and download them
+.SH SYNOPSIS
+\fByt-boat\fR
+[ a ]
+[URL],
+[ aa ]
+[URL],
+[ d ],
+[ c ],
+[ q ],
+[ h ],
+.SH DESCRIPTION
+.PP
+A tool to add YouTube videos to a queue from the terminal and newsboat. Then download the videos in the queue
+.TP
+\fBa\fR
+Adds video the full, provided url to the queue (eg if you want to download from a different frontend)
+.TP
+\fBaa\fR
+Adds url to the queue
+.TP
+\fBd\fR
+Downloads videos in the queue
+.TP
+\fBc\fR
+Clears the queue
+.TP
+\fBq\fR
+Shows the urls in the queue
+.TP
+\fBh\fR
+Shows the help message, showing all the options
+.SH EXAMPLES
+.PP
+On the command line
+.TP
+\fByt-boat a https://youtube.com/watch?v=xxxxxxxxxxx\fR
+.TP
+\fByt-boat q\fR
+.TP
+.PP
+if you want to see videos you have added
+.TP
+\fByt-boat d\fR
+.TP
+\fByt-boat c\fR
+.TP
+.PP
+or if you dont want to download the video, clear the queue
+
+.PP
+In Newsboat
+.TP
+.PP
+ The macro key is set to , as default
+ Navigate to the "article" as it is called in Newsboat which is a video from a feed
+ Press <macro> a to add the current video to the queue
+ eg. ,a
+ Do this for the videos you want to add to the queue
+ Once you have added the videos you want to the queue, check the queue by pressing <macro> q
+ Then press <macro> d and the videos will start downloading in the terminal window
+ After they have downloaded the queue will automatically be cleared
+ If you want to clear the queue at any point before downloading you need to:
+ Go to a feed
+ Press <macro> c
+.SH FILES
+.TP
+\fI$XDG_DATA_HOME/yt-boat/yt-boat.queue\fR
+.SH SEE ALSO
+yt-dlp(1), newsboat(1)
+.SH BUGS
+No known bugs. If you find something, please create an issue at https://github.com/flufficat/yt-boat/ or email me at flufficat.dev.synchronise@simplelogin.fr
+.SH AUTHOR
+flufficat (https://github.com/flufficat/)
+
