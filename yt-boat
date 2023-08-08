@@ -8,6 +8,7 @@ r="\e[0m"
 QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
 
 # Functions
+
 ERR_ () {
 	echo -e "${y}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
 	as this is probably an error with the code itself"}${r}" 1>&2
@@ -58,7 +59,7 @@ while test "$#" -gt 0; do
 				do
 					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $QF
 				done
-				OK_EXIT "Videos added to queue" || ERR_
+				OK_EXIT "Videos added to queue"
 			;;
 		
 		aa|add-alternative|--add-alternative)
