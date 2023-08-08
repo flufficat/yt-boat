@@ -17,14 +17,14 @@ OK_EXIT () {
 	exit 0
 }
 
-ERR_ () {
+ERR () {
 	echo -e "${y}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
 	as this is probably an error with the code itself"}${r}" 1>&2
 	exit 1
 }
 
 
-QUEUE_ () {
+QUEUE () {
 	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:"
 	for i in $(cat $QF)
 	do
@@ -32,7 +32,7 @@ QUEUE_ () {
 	done
 }
 
-HELP_ () {
+HELP () {
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
 a add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
 aa add-alternative [url]     Adds url to the queue\n\
@@ -77,7 +77,7 @@ while test "$#" -gt 0; do
 				: > $QF
 				OK_EXIT "Videos downloaded"
 			else
-				ERR_ "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
+				ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
 			fi
 			;;
 
@@ -85,54 +85,54 @@ while test "$#" -gt 0; do
 			if : > $QF; then
 				OK_EXIT "Queue cleared"
 			else
-				ERR_
+				ERR
 			fi
 			;;
 
 		q|queue|--queue)
 		shift
-			if QUEUE_; then
+			if QUEUE; then
 				OK_EXIT
 			else
-				ERR_ "Queue file may not exist, see FAQ's"
+				ERR "Queue file may not exist, see FAQ's"
 			fi
 			;;
 
 		h|help|--help)
-			if HELP_; then
+			if HELP; then
 				OK_EXIT
 			else
-				ERR_
+				ERR
 			fi
 			;;
 
         	-hnb)
 			clear
-			if echo -e "$(HELP_)"; then
+			if echo -e "$(HELP)"; then
 				OK "Press enter to go back to newsboat"
 				read
 				OK_EXIT
 			else
-				ERR_
+				ERR
 			fi
 			;;
 
 		-qnb)
 			clear
-			if echo -e "$(QUEUE_)"; then
+			if echo -e "$(QUEUE)"; then
 				OK "Press enter to go back to newsboat"
 				read
 				OK_EXIT
 			else
-				ERR_
+				ERR
 			fi
 			;;
 
 		*)
 			shift
 			echo -e "${y}Not a valid option${r}"
-			HELP_
-			ERR_
+			HELP
+			ERR
 			;;
 	esac
 	shift
