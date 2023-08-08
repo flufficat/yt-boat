@@ -27,7 +27,7 @@ QUEUE_ () {
 		#let mins=$(($(yt-dlp -s --ignore-config --print duration $i) / 60))
 		#let secs=$(($(yt-dlp -s --ignore-config --print duration $i) % 60))
 		#title=$(yt-dlp -s --ignore-config --print title $i)
-		echo "$(yt-dlp -s --ignore-config --print title $i) - $(($(yt-dlp -s --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --ignore-config --print duration $i) % 60))"
+		echo -e "$(yt-dlp -s --ignore-config --print title $i) - $(($(yt-dlp -s --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --ignore-config --print duration $i) % 60)) - ${green}$i${reset}"
 	done
 
 }
