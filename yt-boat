@@ -8,13 +8,6 @@ r="\e[0m"
 QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
 
 # Functions
-
-ERR_ () {
-	echo -e "${y}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
-	as this is probably an error with the code itself"}${r}" 1>&2
-	exit 1
-}
-
 OK () {
 	echo -e "${g}$1${r}" 1>&2
 }
@@ -23,6 +16,13 @@ OK_EXIT () {
 	echo -e "${g}$1${r}" 1>&2
 	exit 0
 }
+
+ERR_ () {
+	echo -e "${y}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
+	as this is probably an error with the code itself"}${r}" 1>&2
+	exit 1
+}
+
 
 QUEUE_ () {
 	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:"
