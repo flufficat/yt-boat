@@ -132,7 +132,6 @@ while test "$#" -gt 0; do
 			shift
 			echo -e "${y}Not a valid option${r}"
 			HELP
-			ERR
 			;;
 	esac
 	shift
