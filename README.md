@@ -8,12 +8,12 @@
 [![GitHub tag](https://img.shields.io/github/v/tag/flufficat/yt-boat?color=BA7BE5&label=Latest&style=for-the-badge)](https://github.com/flufficat/yt-boat/tags)
 
 ## Features
-- [x] Add and download videos from the queue on command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
-- [x] Clear the queue on the command line and in newsboat [#5](https://github.com/flufficat/yt-boat/issues/5)
-- [x] A "See the queue" feature on command line and in Newsboat [#3](https://github.com/flufficat/yt-boat/issues/3)
+- [x] Add and download videos to and from the queue [#5](https://github.com/flufficat/yt-boat/issues/5)
+- [x] Clear the queue [#5](https://github.com/flufficat/yt-boat/issues/5)
+- [x] See the title, duration and id's/url's of videos in the queue [#3](https://github.com/flufficat/yt-boat/issues/3)
 - [x] Simple and helpful terminal output [#17](https://github.com/flufficat/yt-boat/issues/17)
 - [x] Add multiple urls at once
-- [x] A KISS style project
+- [x] A KISS project
 - [x] Download from YouTube by default or from a frontend if you provide that url (or the feed does)
 
 ## Dependencies
