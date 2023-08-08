@@ -22,7 +22,10 @@ OK_ () {
 
 QUEUE_ () {
 	echo -e "There are ${green}$(wc -l $QF | cut -c 1)${reset} vidoes in the queue:"
-	cat $QF
+	for i in $(cat $QF)
+	do
+		echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${green}$i${reset}"
+	done
 }
 
 HELP_ () {
