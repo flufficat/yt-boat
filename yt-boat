@@ -54,7 +54,11 @@ while test "$#" -gt 0; do
 				for i in "$@"
 				do
 					echo "$i" >> $QF # Adds the url to the queue file
-					echo -n "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}\n" >> $IF # Gets the info from yt-dlp about the urls in the queue and adds them to the info file
+					title=$(yt-dlp -s --no-warnings --ignore-config --print title $i) # Gets the info from yt-dlp about the urls in the queue and adds them to the queue and info files
+					duration=$(yt-dlp -s --no-warnings --ignore-config --print duration $i)
+					echo -n "$title - $(($duration / 60)):$(($duration % 60)) $g$i$r\n">> $IF
+
+
 				done
 				OK_EXIT "Videos added to queue"
 			;;

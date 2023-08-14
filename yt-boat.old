@@ -5,7 +5,8 @@ y="\e[0;93m"
 r="\e[0m"
 
 # Location of the queue file
-QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
+QF="$XDG_DATA_HOME/yt-boat/queue"
+IF="$XDG_DATA_HOME/yt-boat/info"
 
 # Functions - These allow for less repeating of code which makes it easier to manage and to read
 OK () { # Prints a success message, from input, in green
@@ -24,26 +25,21 @@ ERR () {  # Prints an error message, from input or a default, in yellow, then ex
 }
 
 
-QUEUE () { # Shows the queue; containing title, duration and video id's/url's
-	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's/id's in the queue, with the number in green
-	for i in $(cat $QF)
-	do
-		echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" # Directly loads the title and duration on demand. yt-dlp provides only seconds so this reformats it. The duration in minutes and seconds is created from, total seconds divided by 60 and the remainder of total seconds divided by sixty
-	done
+QUEUE () { # Shows the queue; containing titles, durations and video url's
+	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's in the queue, with the number in green
+	echo -e $(cat $IF)
 }
 
 HELP () { # Prints the help dialogue
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
-a add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
-aa add-alternative [url]     Adds url to the queue\n\
+a add [url]                  Adds video the provided url to the queue\n\
 d download                   Downloads videos in the queue\n\
 c clear                      Clears the queue\n\
 q queue                      Shows the urls in the queue\n\
 h help                       Shows this help message\n\
 \n\
 In newsboat\n\
-<macro> a Adds current video's ID to queue\n\
-<macro> l Adds the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+<macro> a Adds current video's url to queue\n\
 <macro> d Downloads the urls in the queue\n\
 <macro> c Clears the urls in the queue\n\
 <macro> q Shows the urls in the queue\n\
@@ -57,32 +53,24 @@ while test "$#" -gt 0; do
 			shift
 				for i in "$@"
 				do
-					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
+					echo "$i" >> $QF # Adds the url to the queue file
+					echo -n "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}\n" >> $IF # Gets the info from yt-dlp about the urls in the queue and adds them to the info file
 				done
 				OK_EXIT "Videos added to queue"
 			;;
-		
-		aa|add-alternative|-aa|--add-alternative) # Adds the id or url to the queue file
-			shift
-				for i in $@
-				do
-					echo $i >> $QF
-				done
-				OK_EXIT "Video added to queue"
-			;;
 
-
-		d|download|-d|--download) # Provides the queue files as a url file to yt-dlp 
+		d|download|-d|--download) # Provides the queue file as a url file to yt-dlp 
 			if yt-dlp -a "$QF"; then
 				: > $QF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
+				: > $IF # Clears the info file, by overriding its contents with nothing, only if yt-dlp reports a successful download
 				OK_EXIT "Videos downloaded"
 			else
 				ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config" # Otherwise simply errors so that the yt-dlp provlem can be resolved and the queue is not lost because it would be a pain to add all of the videos again
 			fi
 			;;
 
-		c|clear|-c|--clear) # Clears the queue file, by overriding its contents with nothing
-			if : > $QF; then
+		c|clear|-c|--clear) # Clears the queue and info files, by overriding its contents with nothing
+			if : > $QF && : > $IF; then
 				OK_EXIT "Queue cleared"
 			else
 				ERR
