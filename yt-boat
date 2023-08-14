@@ -2,9 +2,10 @@
 # Variables to change colour of text on terminal
 g="\e[1;32m"
 y="\e[0;93m"
+b="\e[0;94m"
 r="\e[0m"
 
-# Location of the queue file
+# Location of the queue and info files
 QF="$XDG_DATA_HOME/yt-boat/queue"
 IF="$XDG_DATA_HOME/yt-boat/info"
 
@@ -51,14 +52,11 @@ while test "$#" -gt 0; do
 	case "$1" in
 		a|add|-a|--add) # Adds a video to the queue
 			shift
+				
 				for i in "$@"
 				do
 					echo "$i" >> $QF # Adds the url to the queue file
-					title=$(yt-dlp -s --no-warnings --ignore-config --print title $i) # Gets the info from yt-dlp about the urls in the queue and adds them to the queue and info files
-					duration=$(yt-dlp -s --no-warnings --ignore-config --print duration $i)
-					echo -n "$title - $(($duration / 60)):$(($duration % 60)) $g$i$r\n">> $IF
-
-
+					echo -n "$(yt-dlp --no-warnings --ignore-config --print title,duration_string $i) $g$i$r\n" >> $IF
 				done
 				OK_EXIT "Videos added to queue"
 			;;
