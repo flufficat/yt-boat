@@ -1,0 +1,137 @@
+#!/bin/bash
+# Variables to change colour of text on terminal
+g="\e[1;32m"
+y="\e[0;93m"
+r="\e[0m"
+
+# Location of the queue file
+QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
+CQF="$XDG_DATA_HOME/yt-boat/yt-boat-content.queue"
+
+# Functions - These allow for less repeating of code which makes it easier to manage and to read
+OK () { # Prints a success message, from input, in green
+	echo -e "${g}$1${r}" 1>&2
+}
+
+OK_EXIT () { # Prints a success message, from input, in green, then exits
+	echo -e "${g}$1${r}" 1>&2
+	exit 0
+}
+
+ERR () {  # Prints an error message, from input or a default, in yellow, then exits
+	echo -e "${y}yt-boat: Error: ${1:-"Unknown: Please submit an issue or contact me \
+	as this is probably an error with the code itself"}${r}" 1>&2
+	exit 1
+}
+
+
+QUEUE () { # Shows the queue; containing title, duration and video id's/url's
+	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's/id's in the queue, with the number in green
+	echo -e $(cat $CQF)
+}
+
+HELP () { # Prints the help dialogue
+	echo -e "Usage:\nyt-boat [option]\noptions:\n\
+a add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+aa add-alternative [url]     Adds url to the queue\n\
+d download                   Downloads videos in the queue\n\
+c clear                      Clears the queue\n\
+q queue                      Shows the urls in the queue\n\
+h help                       Shows this help message\n\
+\n\
+In newsboat\n\
+<macro> a Adds current video's ID to queue\n\
+<macro> l Adds the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+<macro> d Downloads the urls in the queue\n\
+<macro> c Clears the urls in the queue\n\
+<macro> q Shows the urls in the queue\n\
+<macro> h Shows this help message"
+}
+
+# Options
+while test "$#" -gt 0; do
+	case "$1" in
+		a|add|-a|--add) # Adds a video to the queue
+			shift
+				for i in "$@"
+				do
+					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
+					echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" >> $XDG_DATA_HOME/yt-boat/yt-boat-content.queue
+				done
+				OK_EXIT "Videos added to queue"
+			;;
+		
+		aa|add-alternative|-aa|--add-alternative) # Adds the id or url to the queue file
+			shift
+				for i in $@
+				do
+					echo $i >> $QF
+				done
+				OK_EXIT "Video added to queue"
+			;;
+
+
+		d|download|-d|--download) # Provides the queue files as a url file to yt-dlp 
+			if yt-dlp -a "$QF"; then
+				: > $QF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
+				OK_EXIT "Videos downloaded"
+			else
+				ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config" # Otherwise simply errors so that the yt-dlp provlem can be resolved and the queue is not lost because it would be a pain to add all of the videos again
+			fi
+			;;
+
+		c|clear|-c|--clear) # Clears the queue file, by overriding its contents with nothing
+			if : > $QF; then
+				OK_EXIT "Queue cleared"
+			else
+				ERR
+			fi
+			;;
+
+		q|queue|-q|--queue) # Calls the queue function
+		shift
+			if QUEUE; then
+				OK_EXIT
+			else
+				ERR "Queue file may not exist, see FAQ's"
+			fi
+			;;
+
+		h|help|-h|--help) # Calls the help function
+			if HELP; then
+				OK_EXIT
+			else
+				ERR
+			fi
+			;;
+
+        	-hnb) # Calls the help function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
+			clear
+			if echo -e "$(HELP)"; then
+				OK "Press enter to go back to newsboat"
+				read
+				OK_EXIT
+			else
+				ERR
+			fi
+			;;
+
+		-qnb)  # Calls the queue function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
+			clear
+			if echo -e "$(QUEUE)"; then
+				OK "Press enter to go back to newsboat"
+				read
+				OK_EXIT
+			else
+				ERR
+			fi
+			;;
+
+		*) # Catches any mistaken command inputs and presents the available ones through the help dialoge
+			shift
+			echo -e "${y}Not a valid option${r}"
+			HELP
+			;;
+	esac
+	shift
+done
