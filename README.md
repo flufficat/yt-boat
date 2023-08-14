@@ -104,9 +104,7 @@ Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees
 - Q: Adding a video to queue wont work?
 - A: Make sure you have either selected a video in a feed by using arrow keys or are in a "article" (by pressing on enter from a feed)
 - Q: I am getting Error: Queue file may not exist, see FAQ's
-- A: For some reason the queue file may have been deleted, this program can't do that so it is probably for another reason. Just add a new queue file at $XDG_DATA_HOME/yt-boat/newsboat.queue by entering these commands:
-	- `mkdir $XDG_DATA_HOME/yt-boat`
-	- `touch $XDG_DATA_HOME/yt-boat/newsboat.queue`
+- A: For some reason the queue file may have been deleted, this program can't do that so it is probably for another reason. Just run the installer again.
 
 ## Licence
 >  <p xmlns:cc="https://creativecommons.org/ns#" xmlns:dct="https://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/flufficat/yt-boat">yt-boat</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/flufficat/">flufficat</a> is marked with <a href="https://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0 Universal <img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"></a></p>
