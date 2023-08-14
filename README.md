@@ -10,11 +10,10 @@
 ## Features
 - [x] Add and download videos to and from the queue [#5](https://github.com/flufficat/yt-boat/issues/5)
 - [x] Clear the queue [#5](https://github.com/flufficat/yt-boat/issues/5)
-- [x] See the title, duration and id's/url's of videos in the queue [#3](https://github.com/flufficat/yt-boat/issues/3)
+- [x] See the title, duration and url's of videos in the queue [#3](https://github.com/flufficat/yt-boat/issues/3)
 - [x] Simple and helpful terminal output [#17](https://github.com/flufficat/yt-boat/issues/17)
 - [x] Add multiple urls at once
 - [x] A KISS project
-- [x] Download from YouTube by default or from a frontend if you provide that url (or the feed does)
 
 ## Dependencies
 The only dependencies should be:
@@ -42,7 +41,6 @@ The only dependencies should be:
   
 	```
 	macro a set browser "yt-boat --add $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-	macro l set browser "yt-boat --add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 	macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 	macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 	macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
@@ -60,7 +58,6 @@ The only dependencies should be:
 	yt-boat [option]
 	options:
 	- `add a`               Adds video ID to the queue
-	- `add-alternative aa`  Adds the full, provided url to the queue (eg if you want to download from a different frontend)
 	- `download d`          Downloads the videos in the queue
 	- `clear c`             Clears the queue
 	- `queue q`             Shows the urls in the queue
@@ -68,7 +65,6 @@ The only dependencies should be:
 
 - In Newsboat
   	 - `<macro> a`             Adds current video's ID to queue
- 	 - `<macro> l`             Adds the full, provided url to the queue (eg if you want to download from a different frontend)
 	 - `<macro> d`             Downloads the urls in the queue
 	 - `<macro> c`             Clears the urls in the queue
 	 - `<macro> q`             Shows the urls in the queue
@@ -111,8 +107,6 @@ Submit an issue [here](https://github.com/flufficat/yt-boat/issues/new?assignees
 - A: For some reason the queue file may have been deleted, this program can't do that so it is probably for another reason. Just add a new queue file at $XDG_DATA_HOME/yt-boat/newsboat.queue by entering these commands:
 	- `mkdir $XDG_DATA_HOME/yt-boat`
 	- `touch $XDG_DATA_HOME/yt-boat/newsboat.queue`
-- Q: What is the difference between `--add` and `--add-alternative`?
-- A: `--add` extracts the video ID from the url, this is the code at the end of the url and adds it to the queue. This ensures that the video is downloaded from youtube because yt-dlp automatically downloads from youtube if only the ID is provided. `--add-alternative` simply adds the url you provide or is provided by the feed in newsboat meaning that you sould be able to downlaod from the frontend if yt-dlp accepts the frontend and the frontend allows downloading. To use `--add` you need to provide a url, not just an ID because it extracts the ID and if it doesn't find a url the extraction process will fail and the video wont be added. If you just want to add a video and you have the ID then use --add-alternative because this just passes the url you provide to the file.
 
 ## Licence
 >  <p xmlns:cc="https://creativecommons.org/ns#" xmlns:dct="https://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/flufficat/yt-boat">yt-boat</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/flufficat/">flufficat</a> is marked with <a href="https://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC0 1.0 Universal <img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:28px!important;margin-left:5px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"></a></p>

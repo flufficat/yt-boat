@@ -5,7 +5,7 @@ r="\e[0m"
 g="\e[0;32m"
 
 # Making queue
-if test ! -d $XDG_DATA_HOME/yt-boat && echo -e "${y}Making queue${r}" ; mkdir $XDG_DATA_HOME/yt-boat ; touch $XDG_DATA_HOME/yt-boat/yt-boat.queue
+if test ! -d $XDG_DATA_HOME/yt-boat && echo -e "${y}Making queue${r}" ; mkdir $XDG_DATA_HOME/yt-boat ; touch $XDG_DATA_HOME/yt-boat/queue ; touch $XDG_DATA_HOME/yt-boat/info
 
 # Copying yt-boat to path
 echo -e "${y}Copying yt-boat to path${r}"
