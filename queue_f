@@ -56,7 +56,7 @@ while test "$#" -gt 0; do
 				for i in "$@"
 				do
 					echo "$i" >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
-					echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" >> $IF
+					echo -n "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}\n" >> $IF
 				done
 				OK_EXIT "Videos added to queue"
 			;;
