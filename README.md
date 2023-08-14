@@ -37,26 +37,21 @@ The only dependencies should be:
   To install it to newsboat as well also run:
   
   `./newsboat_install.sh`
-
-  then run (dont need if updating)
-  
-  `echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config` 
   
   or add the following to your newsboat config
   
-```
-macro a set browser "yt-boat --add $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro l set browser "yt-boat --add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
-```
+	```
+	macro a set browser "yt-boat --add $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	macro l set browser "yt-boat --add-alternative $1" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	macro d set browser "yt-boat --download" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	macro c set browser "yt-boat --clear" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
+	```
 
-
-  then run (dont need if updating)
-    
-   `echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config` 
+	then run (dont need if updating)
+	    
+	   `echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config` 
 
   
 ## Usage options
