@@ -1,20 +1,19 @@
 #!/usr/bin/fish
 
 # Colour variables
-set -l green \e[1;32m
-set -l red \e[1;31m
-set -l yellow \e[0;93m
-set -l reset \e[0m
+set -l g \e[1;32m
+set -l y \e[0;93m
+set -l r \e[0m
 
 # Functions
 function ERR_
-	echo -e "${yellow}yt-boat: line $LINENO: Error: ${1:-"Unknown: Please submit an issue or contact me \
-	as this is probably an error with the code itself"}${reset}" 1>&2
+	echo -e "${y}yt-boat: line $LINENO: Error: ${1:-"Unknown: Please submit an issue or contact me \
+	as this is probably an error with the code itself"}${r}" 1>&2
 	exit 1
 end
 
 function OK_
-	echo -e "${green}${1}${reset}" 1>&2
+	echo -e "${g}${1}${r}" 1>&2
 	exit 0
 end
 
@@ -117,7 +116,7 @@ while test count $argv -gt 0
         -hnb)
 			clear
 			if echo -e "$(HELP_)"
-				echo -e "${green}Press enter to go back to newsboat${reset}"
+				echo -e "${g}Press enter to go back to newsboat${r}"
 				read
 				OK_
 			else
@@ -128,7 +127,7 @@ while test count $argv -gt 0
 		-qnb)
 			clear
 			if echo -e "$(QUEUE_)"
-				echo -e "${green}Press enter to go back to newsboat${reset}"
+				echo -e "${g}Press enter to go back to newsboat${r}"
 				read
 				OK_
 			else
@@ -138,7 +137,7 @@ while test count $argv -gt 0
 
 		*)
 			shift
-			echo -e "${yellow}Not a valid option${reset}"
+			echo -e "${y}Not a valid option${r}"
 			HELP_
 			ERR_
 			;;
