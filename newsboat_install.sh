@@ -14,3 +14,6 @@ macro c set browser "yt-boat clear" ; open-in-browser ; set browser "exo-open --
 macro q set browser "yt-boat -qnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 macro h set browser "yt-boat -hnb" ; open-in-browser ; set browser "exo-open --launch WebBrowser"
 ' > $XDG_CONFIG_HOME/newsboat/yt-boat
+
+# Check for include line in newsboat config and add it if it isnt there
+cat $XDG_CONFIG_HOME/newsboat/config | grep "include ~/.config/newsboat/yt-boat" || echo -e "include ~/.config/newsboat/yt-boat" >> $XDG_CONFIG_HOME/newsboat/config
