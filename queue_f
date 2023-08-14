@@ -25,8 +25,8 @@ ERR () {  # Prints an error message, from input or a default, in yellow, then ex
 }
 
 
-QUEUE () { # Shows the queue; containing title, duration and video id's/url's
-	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's/id's in the queue, with the number in green
+QUEUE () { # Shows the queue; containing titles, durations and video url's
+	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's in the queue, with the number in green
 	echo -e $(cat $IF)
 }
 
@@ -53,23 +53,23 @@ while test "$#" -gt 0; do
 			shift
 				for i in "$@"
 				do
-					echo "$i" >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
-					echo -n "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}\n" >> $IF
+					echo "$i" >> $QF # Adds the url to the queue file
+					echo -n "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}\n" >> $IF # Gets the info from yt-dlp about the urls in the queue and adds them to the info file
 				done
 				OK_EXIT "Videos added to queue"
 			;;
 
-		d|download|-d|--download) # Provides the queue files as a url file to yt-dlp 
+		d|download|-d|--download) # Provides the queue file as a url file to yt-dlp 
 			if yt-dlp -a "$QF"; then
 				: > $QF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
-				: > $IF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
+				: > $IF # Clears the info file, by overriding its contents with nothing, only if yt-dlp reports a successful download
 				OK_EXIT "Videos downloaded"
 			else
 				ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config" # Otherwise simply errors so that the yt-dlp provlem can be resolved and the queue is not lost because it would be a pain to add all of the videos again
 			fi
 			;;
 
-		c|clear|-c|--clear) # Clears the queue file, by overriding its contents with nothing
+		c|clear|-c|--clear) # Clears the queue and info files, by overriding its contents with nothing
 			if : > $QF && : > $IF; then
 				OK_EXIT "Queue cleared"
 			else
