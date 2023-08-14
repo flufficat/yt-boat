@@ -5,8 +5,8 @@ y="\e[0;93m"
 r="\e[0m"
 
 # Location of the queue file
-QF="$XDG_DATA_HOME/yt-boat/yt-boat.queue"
-CQF="$XDG_DATA_HOME/yt-boat/yt-boat-content.queue"
+QF="$XDG_DATA_HOME/yt-boat/queue"
+IF="$XDG_DATA_HOME/yt-boat/info"
 
 # Functions - These allow for less repeating of code which makes it easier to manage and to read
 OK () { # Prints a success message, from input, in green
@@ -27,7 +27,7 @@ ERR () {  # Prints an error message, from input or a default, in yellow, then ex
 
 QUEUE () { # Shows the queue; containing title, duration and video id's/url's
 	echo -e "There are ${g}$(wc -l $QF | cut -c 1)${r} vidoes in the queue:" # Prints the number of url's/id's in the queue, with the number in green
-	echo -e $(cat $CQF)
+	echo -e $(cat $IF)
 }
 
 HELP () { # Prints the help dialogue
@@ -56,7 +56,7 @@ while test "$#" -gt 0; do
 				for i in "$@"
 				do
 					echo "$i" >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
-					echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" >> $XDG_DATA_HOME/yt-boat/yt-boat-content.queue
+					echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" >> $IF
 				done
 				OK_EXIT "Videos added to queue"
 			;;
@@ -64,6 +64,7 @@ while test "$#" -gt 0; do
 		d|download|-d|--download) # Provides the queue files as a url file to yt-dlp 
 			if yt-dlp -a "$QF"; then
 				: > $QF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
+				: > $IF # Clears the queue file, by overriding its contents with nothing, only if yt-dlp reports a successful download
 				OK_EXIT "Videos downloaded"
 			else
 				ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config" # Otherwise simply errors so that the yt-dlp provlem can be resolved and the queue is not lost because it would be a pain to add all of the videos again
@@ -71,7 +72,7 @@ while test "$#" -gt 0; do
 			;;
 
 		c|clear|-c|--clear) # Clears the queue file, by overriding its contents with nothing
-			if : > $QF; then
+			if : > $QF && : > $IF; then
 				OK_EXIT "Queue cleared"
 			else
 				ERR
