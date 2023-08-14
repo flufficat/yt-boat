@@ -55,21 +55,11 @@ while test "$#" -gt 0; do
 			shift
 				for i in "$@"
 				do
-					echo "$i" | grep -o -P "(?:v=|\/embed\/|\/1\/|\/v\/)([^&\n?#]+)" | cut -c 3- >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
+					echo "$i" >> $QF # Extracts, using grep regex, the id of the youtube url then adds it to the queue file
 					echo -e "$(yt-dlp -s --no-warnings --ignore-config --print title $i) - $(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) / 60)):$(($(yt-dlp -s --no-warnings --ignore-config --print duration $i) % 60)) ${g}$i${r}" >> $XDG_DATA_HOME/yt-boat/yt-boat-content.queue
 				done
 				OK_EXIT "Videos added to queue"
 			;;
-		
-		aa|add-alternative|-aa|--add-alternative) # Adds the id or url to the queue file
-			shift
-				for i in $@
-				do
-					echo $i >> $QF
-				done
-				OK_EXIT "Video added to queue"
-			;;
-
 
 		d|download|-d|--download) # Provides the queue files as a url file to yt-dlp 
 			if yt-dlp -a "$QF"; then
