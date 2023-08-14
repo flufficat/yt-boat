@@ -32,16 +32,14 @@ QUEUE () { # Shows the queue; containing title, duration and video id's/url's
 
 HELP () { # Prints the help dialogue
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
-a add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
-aa add-alternative [url]     Adds url to the queue\n\
+a add [url]                  Adds video the provided url to the queue\n\
 d download                   Downloads videos in the queue\n\
 c clear                      Clears the queue\n\
 q queue                      Shows the urls in the queue\n\
 h help                       Shows this help message\n\
 \n\
 In newsboat\n\
-<macro> a Adds current video's ID to queue\n\
-<macro> l Adds the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+<macro> a Adds current video's url to queue\n\
 <macro> d Downloads the urls in the queue\n\
 <macro> c Clears the urls in the queue\n\
 <macro> q Shows the urls in the queue\n\
