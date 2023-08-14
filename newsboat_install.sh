@@ -2,7 +2,6 @@
 # Colours
 y="\e[0;33m"
 r="\e[0m"
-g="\e[0;32m"
 
 # Add macro commands to newsboat config
 test ! -e $XDG_CONFIG_HOME/newsboat/yt-boat && touch $XDG_CONFIG_HOME/newsboat/yt-boat
