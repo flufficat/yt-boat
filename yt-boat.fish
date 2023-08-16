@@ -1,6 +1,6 @@
 #!/usr/bin/fish
 
-# Colour variables
+# Variables to change colour of text on terminal
 set -g g '\e[1;32m'
 set -g y '\e[0;93m'
 set -g r '\e[0m'
@@ -9,111 +9,104 @@ set -g r '\e[0m'
 set -g QF "$XDG_DATA_HOME/yt-boat/queue"
 set -g IF "$XDG_DATA_HOME/yt-boat/info"
 
-# Functions
-function ERR_
+# Functions - These allow for less repeating of code which makes it easier to manage and to read
+function OK # Prints a success message, from input, in green
+	echo -e "$g$1$r" 1>&2
+end
+
+function OK_EXIT # Prints a success message, from input, in green, then exits
+	echo -e "$g$1$r" 1>&2
+	exit 0
+end
+
+function ERR  # Prints an error message, from input or a default, in yellow, then exits
 	echo -e "$y yt-boat: line $LINENO: Error: $1:-"Unknown: Please submit an issue or contact me \
 	as this is probably an error with the code itself"$r" 1>&2
 	exit 1
 end
 
-function OK_
-	echo -e "$g$1$r" 1>&2
-	exit 0
-end
-
-function QUEUE_
+function QUEUE # Shows the queue; containing titles, durations and video url's
 	echo -e "There are $g$(wc -l $QF | cut -c 1)$r vidoes in the queue:" # Prints the number of url's in the queue, with the number in green
 	echo -e $(cat $IF)
 end
 
-function HELP_
+function HELP # Prints the help dialogue
 	echo -e "Usage:\nyt-boat [option]\noptions:\n\
--a --add [url]                  Adds video the full, provided url to the queue (eg if you want to download from a different frontend)\n\
--aa --add-alternative [url]     Adds url to the queue\n\
+-a --add [url]                  Adds video the provided url to the queue\n\
 -d --download                   Downloads videos in the queue\n\
 -c --clear                      Clears the queue\n\
 -q --queue                      Shows the urls in the queue\n\
--u --update                     Updates to the latest version of yt-boat\n\
 -h --help                       Shows this help message\n\
 \n\
 In newsboat\n\
-<macro> a Adds current video's ID to queue\n\
-<macro> l Adds the full, provided url to the queue (eg if you want to download from a different frontend)\n\
+<macro> a Adds current video's url to queue\n\
 <macro> d Downloads the urls in the queue\n\
 <macro> c Clears the urls in the queue\n\
 <macro> q Shows the urls in the queue\n\
-<macro> u Updates to the latest version of yt-boat\n\
 <macro> h Shows this help message"
 end
 
-# Options
-argparse -i --name=add 'a/add=+'  -- $argv
-argparse -i --name=download 'd/download'  -- $argv
-argparse -i --name=clear 'c/clear'  -- $argv
-argparse -i --name=queue 'q/queue'  -- $argv
-argparse -i --name=help 'h/help'  -- $argv
-#argparse -i --name=hnb 'hnb'  -- $argv
-#argparse -i --name=qnb 'qnb'  -- $argv
-#argparse -i 'a/add=+' 'd/download' 'c/clear' 'q/queue' 'h/help' 'hnb' 'qnb'  -- $argv
+argparse -i 'a/add=+' 'd/download' 'c/clear' 'q/queue' 'h/help' 'hnb' 'qnb'  -- $argv
 
-if test -n "$_flag_a"
+# Options
+if test -n "$_flag_a" # Adds the url to the queue file
 	for i in "$_flag_a"
-		echo "$_flag_a" >> $QF # Adds the url to the queue file
+		echo "$_flag_a" >> $QF
 		echo -n "$(yt-dlp --no-warnings --ignore-config --print title,duration_string $_flag_a) $g$_flag_a$r\n" >> $IF
 	end
-	OK_ "Videos added to queue" || ERR_
+	OK_EXIT "Videos added to queue"
 		
-else if test -n "$_flag_d"
+else if test -n "$_flag_d" # Provides the queue file as a url file to yt-dlp
 	if yt-dlp -a "$QF"
 		: > $QF
 		: > $IF
-		OK_ "Videos downloaded"
+		OK_EXIT "Videos downloaded"
 	else
-		ERR_ "Probably unsupported url"
+		ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
 	end
 		
-else if test -n "$_flag_c"
+else if test -n "$_flag_c" # Clears the queue and info files, by overriding its contents with nothing
 	if : > $QF && : > $IF
-		OK_ "Queue cleared"
+		OK_EXIT "Queue cleared"
 	else
-		ERR_
+		ERR
 	end
 
-else if test -n "$_flag_q"
-	if QUEUE_
-		OK_
+else if test -n "$_flag_q" # Calls the queue function
+	if QUEUE
+		OK_EXIT
 	else
-		ERR_ "Queue file may not exist, see FAQ's"
+		ERR "Queue file may not exist, see FAQ's"
 	end
 
-else if test -n "$_flag_h"
-	if HELP_
-		OK_
+else if test -n "$_flag_h" # Calls the help function
+	if HELP
+		OK_EXIT
 	else
-		ERR_
+		ERR
 	end
 
-else if test -n "$_flag_hnb"
+else if test -n "$_flag_hnb" # Calls the help function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
 	clear
-	if echo -e "$(HELP_)"
-		echo -e "$g Press enter to go back to newsboat$r"
+	if echo -e "$(HELP)"
+		OK "Press enter to go back to newsboat"
 		read
-		OK_
+		OK_EXIT
 	else
-		ERR_
+		ERR
 	end
 
-else if test -n "$_flag_qnb"
+else if test -n "$_flag_qnb"  # Calls the queue function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
 	clear
-	if echo -e "$(QUEUE_)"
-		echo -e "$g Press enter to go back to newsboat$r"
+	if echo -e "$(QUEUE)"
+		OK "Press enter to go back to newsboat"
 		read
-		OK_
+		OK_EXIT
 	else
-		ERR_
+		ERR
 	end
 
 else
-	echo -e "$y Not a valid option$r"
-	HELP_
+	echo -e "$y Not a valid option$r" # Catches any mistaken command inputs and presents the available ones through the help dialoge
+	HELP
 end
