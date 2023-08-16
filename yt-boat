@@ -2,7 +2,6 @@
 # Variables to change colour of text on terminal
 g="\e[1;32m"
 y="\e[0;93m"
-b="\e[0;94m"
 r="\e[0m"
 
 # Location of the queue and info files
