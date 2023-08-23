@@ -107,6 +107,6 @@ else if test -n "$_flag_qnb"  # Calls the queue function but because newsboat ru
 	end
 
 else
-	echo -e "$y Not a valid option$r" # Catches any mistaken command inputs and presents the available ones through the help dialoge
+	echo -e "$y'$r$argv$y' is not a valid option$r" # Catches any mistaken command inputs and presents the available ones through the help dialoge
 	HELP
 end

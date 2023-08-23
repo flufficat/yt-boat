@@ -118,8 +118,7 @@ while test "$#" -gt 0; do
 			;;
 
 		*) # Catches any mistaken command inputs and presents the available ones through the help dialoge
-			shift
-			echo -e "${y}Not a valid option${r}"
+			echo -e "${y}'${r}${1}${y}' is not a valid option${r}"
 			HELP
 			;;
 	esac
