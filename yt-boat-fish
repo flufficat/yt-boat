@@ -11,16 +11,16 @@ set -g IF "$XDG_DATA_HOME/yt-boat/info"
 
 # Functions - These allow for less repeating of code which makes it easier to manage and to read
 function OK # Prints a success message, from input, in green
-	echo -e "$g$1$r" 1>&2
+	echo -e "$g$argv$r" 1>&2
 end
 
 function OK_EXIT # Prints a success message, from input, in green, then exits
-	echo -e "$g$1$r" 1>&2
+	echo -e "$g$argv$r" 1>&2
 	exit 0
 end
 
 function ERR  # Prints an error message, from input or a default, in yellow, then exits
-	echo -e "$y yt-boat: line $LINENO: Error: $1:-"Unknown: Please submit an issue or contact me \
+	echo -e "$y yt-boat: line $LINENO: Error: $argv:-"Unknown: Please submit an issue or contact me \
 	as this is probably an error with the code itself"$r" 1>&2
 	exit 1
 end
