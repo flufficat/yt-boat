@@ -70,6 +70,11 @@ The only dependencies should be:
 	 - `<macro> q`             Shows the urls in the queue
 	 - `<macro> h`             Shows this help message
 
+ ## Recomendations
+ - For ease of use, create an alias for yt-boat so you can run it as something that is easier to type.
+
+	e.g. `alias queue="yt-boat"`
+
  ## Typical usage
  - On the command line
  	 - `yt-boat a https://youtube.com/watch?v=xxxxxxxxxxx`
