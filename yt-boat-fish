@@ -49,14 +49,14 @@ end
 argparse -i 'a/add=+' 'd/download' 'c/clear' 'q/queue' 'h/help' 'hnb' 'qnb'  -- $argv
 
 # Options
-if test -n "$_flag_a" # Adds the url to the queue file
+if set -q _flag_a # Adds the url to the queue file
 	for i in "$_flag_a"
 		echo "$_flag_a" >> $QF
 		echo -n "$(yt-dlp --no-warnings --ignore-config --print title,duration_string $_flag_a) $g$_flag_a$r\n" >> $IF
 	end
 	OK_EXIT "Videos added to queue"
 		
-else if test -n "$_flag_d" # Provides the queue file as a url file to yt-dlp
+else if set -q _flag_d # Provides the queue file as a url file to yt-dlp
 	if yt-dlp -a "$QF"
 		: > $QF
 		: > $IF
@@ -65,28 +65,28 @@ else if test -n "$_flag_d" # Provides the queue file as a url file to yt-dlp
 		ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
 	end
 		
-else if test -n "$_flag_c" # Clears the queue and info files, by overriding its contents with nothing
+else if set -q _flag_c # Clears the queue and info files, by overriding its contents with nothing
 	if : > $QF && : > $IF
 		OK_EXIT "Queue cleared"
 	else
 		ERR
 	end
 
-else if test -n "$_flag_q" # Calls the queue function
+else if set -q _flag_q # Calls the queue function
 	if QUEUE
 		OK_EXIT
 	else
 		ERR "Queue file may not exist, see FAQ's"
 	end
 
-else if test -n "$_flag_h" # Calls the help function
+else if set -q _flag_h # Calls the help function
 	if HELP
 		OK_EXIT
 	else
 		ERR
 	end
 
-else if test -n "$_flag_hnb" # Calls the help function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
+else if set -q _flag_hnb # Calls the help function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
 	clear
 	if echo -e "$(HELP)"
 		OK "Press enter to go back to newsboat"
@@ -96,7 +96,7 @@ else if test -n "$_flag_hnb" # Calls the help function but because newsboat runs
 		ERR
 	end
 
-else if test -n "$_flag_qnb"  # Calls the queue function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
+else if set -q _flag_qnb  # Calls the queue function but because newsboat runs macros in a different way as it is run on the terminal it needs to be passed through as the output of echo
 	clear
 	if echo -e "$(QUEUE)"
 		OK "Press enter to go back to newsboat"
