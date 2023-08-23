@@ -16,7 +16,7 @@ end
 
 function OK_EXIT # Prints a success message, from input, in green, then exits
 	echo -e "$g$argv$r" 1>&2
-	exit 0
+	return 0
 end
 
 function ERR  # Prints an error message, from input or a default, in yellow, then exits
@@ -46,7 +46,8 @@ In newsboat\n\
 <macro> h Shows this help message"
 end
 
-argparse -i 'a/add=+' 'd/download' 'c/clear' 'q/queue' 'h/help' 'hnb' 'qnb'  -- $argv
+argparse -i -X 1 'a/add=+' 'd/download' 'c/clear' 'q/queue' 'h/help' 'hnb' 'qnb'  -- $argv
+or return
 
 # Options
 if set -q _flag_a # Adds the url to the queue file
@@ -55,7 +56,7 @@ if set -q _flag_a # Adds the url to the queue file
 		echo -n "$(yt-dlp --no-warnings --ignore-config --print title,duration_string $_flag_a) $g$_flag_a$r\n" >> $IF
 	end
 	OK_EXIT "Videos added to queue"
-		
+
 else if set -q _flag_d # Provides the queue file as a url file to yt-dlp
 	if yt-dlp -a "$QF"
 		: > $QF
@@ -64,7 +65,7 @@ else if set -q _flag_d # Provides the queue file as a url file to yt-dlp
 	else
 		ERR "Probably unsupported url or invalid format hardcoded in your yt-dlp config"
 	end
-		
+
 else if set -q _flag_c # Clears the queue and info files, by overriding its contents with nothing
 	if : > $QF && : > $IF
 		OK_EXIT "Queue cleared"
@@ -74,14 +75,14 @@ else if set -q _flag_c # Clears the queue and info files, by overriding its cont
 
 else if set -q _flag_q # Calls the queue function
 	if QUEUE
-		OK_EXIT
+		OK
 	else
 		ERR "Queue file may not exist, see FAQ's"
 	end
 
 else if set -q _flag_h # Calls the help function
 	if HELP
-		OK_EXIT
+		OK
 	else
 		ERR
 	end
@@ -91,7 +92,7 @@ else if set -q _flag_hnb # Calls the help function but because newsboat runs mac
 	if echo -e "$(HELP)"
 		OK "Press enter to go back to newsboat"
 		read
-		OK_EXIT
+		OK
 	else
 		ERR
 	end
@@ -101,11 +102,10 @@ else if set -q _flag_qnb  # Calls the queue function but because newsboat runs m
 	if echo -e "$(QUEUE)"
 		OK "Press enter to go back to newsboat"
 		read
-		OK_EXIT
+		OK
 	else
 		ERR
 	end
-
 else
 	echo -e "$y'$r$argv$y' is not a valid option$r" # Catches any mistaken command inputs and presents the available ones through the help dialoge
 	HELP
