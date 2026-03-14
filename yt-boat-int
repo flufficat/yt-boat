@@ -5,7 +5,7 @@ y="\e[0;93m"
 r="\e[0m"
 
 # File variables
-queue_file="/home/leon/.local/share/yt-boat/newsboat.queue"
+queue_file="$XDG_DATA_HOME/yt-boat/newsboat.queue"
 
 # Functions
 ERR_ () {
@@ -20,8 +20,8 @@ OK_ () {
 }
 
 QUEUE_ () {
-	echo -e "There are ${g}$(wc -l /home/leon/.local/share/yt-boat/newsboat.queue | cut -c 1)${r} vidoes in the queue:"
-	cat /home/leon/.local/share/yt-boat/newsboat.queue
+	echo -e "There are ${g}$(wc -l $XDG_DATA_HOME/yt-boat/newsboat.queue | cut -c 1)${r} vidoes in the queue:"
+	cat $XDG_DATA_HOME/yt-boat/newsboat.queue
 }
 
 HELP_ () {
